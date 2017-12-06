@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+test-server-loansrv01:
+  stage: deploy
+  tags:
+    - runner-1
+  script:
+    - ll
+  when: manual
