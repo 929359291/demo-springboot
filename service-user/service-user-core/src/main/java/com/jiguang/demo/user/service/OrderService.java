@@ -1,6 +1,6 @@
 package com.jiguang.demo.user.service;
 
-import com.jiguang.demo.user.api.entity.Order;
+import com.jiguang.demo.user.entity.Order;
 import com.jiguang.demo.user.repository.OrderRepository;
 import io.shardingjdbc.core.api.HintManager;
 import io.shardingjdbc.core.hint.HintManagerHolder;

@@ -1,6 +1,6 @@
 package com.jiguang.demo.base.service;
 
-import com.jiguang.demo.base.api.entity.DbRoute;
+import com.jiguang.demo.base.entity.DbRoute;
 import com.jiguang.demo.base.repository.DbRouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

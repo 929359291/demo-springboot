@@ -1,10 +1,10 @@
 package com.jiguang.demo.user.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
-import com.jiguang.demo.user.api.client.UserServiceClient;
-import com.jiguang.demo.user.api.entity.Order;
-import com.jiguang.demo.user.api.entity.User;
-import com.jiguang.demo.user.client.BaseFeignClient;
+import com.jiguang.demo.user.provider.UserProvider;
+import com.jiguang.demo.user.entity.Order;
+import com.jiguang.demo.user.entity.User;
+import com.jiguang.demo.user.consumer.BaseFeignConsumer;
 import com.jiguang.demo.user.service.OrderService;
 import com.jiguang.demo.user.service.UserService;
 import com.jiguang.demo.user.sharding.SelectedDatabase;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * @create 2017/11/27
  */
 @RestController
-public class UserController implements UserServiceClient {
+public class UserController implements UserProvider {
 
     @Autowired
     UserService userService;
@@ -30,7 +30,7 @@ public class UserController implements UserServiceClient {
     OrderService orderService;
 
     @Autowired
-    BaseFeignClient baseFeignClient;
+    BaseFeignConsumer baseFeignConsumer;
 
     @Override
     public String insertUser(Long id, String name, String password){
@@ -85,7 +85,7 @@ public class UserController implements UserServiceClient {
     }
 
     private String getDsByUserId(Long userId){
-        String ds = baseFeignClient.getDsByUserId(userId);
+        String ds = baseFeignConsumer.getDsByUserId(userId);
         return ds;
     }
 

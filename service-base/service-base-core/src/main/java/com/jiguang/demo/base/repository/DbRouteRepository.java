@@ -1,6 +1,6 @@
 package com.jiguang.demo.base.repository;
 
-import com.jiguang.demo.base.api.entity.DbRoute;
+import com.jiguang.demo.base.entity.DbRoute;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

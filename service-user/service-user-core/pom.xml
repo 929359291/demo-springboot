@@ -14,6 +14,7 @@
     <properties>
         <service-user-api.version>${parent.version}</service-user-api.version>
         <service-base-api.version>${parent.version}</service-base-api.version>
+        <framework-service-support.version>${parent.version}</framework-service-support.version>
     </properties>
 
     <dependencies>
@@ -91,6 +92,11 @@
             <groupId>com.jiguang</groupId>
             <artifactId>service-base-api</artifactId>
             <version>${service-base-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jiguang</groupId>
+            <artifactId>framework-service-support</artifactId>
+            <version>${framework-service-support.version}</version>
         </dependency>
     </dependencies>
 

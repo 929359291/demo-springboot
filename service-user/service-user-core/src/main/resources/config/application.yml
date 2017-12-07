@@ -2,7 +2,7 @@ server:
   port: 8182
 
 mybatis:
-  type-aliases-package: com.jiguang.demo.user.api.entity
+  type-aliases-package: com.jiguang.demo.user.entity
   mapper-locations: classpath:mybatis/mapper/**/*.xml
   config-locations: classpath:mybatis/mybatis-config.xml
 

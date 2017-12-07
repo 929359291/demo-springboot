@@ -1,4 +1,4 @@
-package com.jiguang.demo.user.api.client;
+package com.jiguang.demo.user.provider;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * @create 2017/12/7
  */
 @RequestMapping("/user")
-public interface UserServiceClient {
+public interface UserProvider {
 
     @RequestMapping("/insert_user")
     String insertUser(Long id,String name,String password);

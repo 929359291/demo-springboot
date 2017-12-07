@@ -1,6 +1,6 @@
 package com.jiguang.demo.base.controller;
 
-import com.jiguang.demo.base.api.client.BaseServiceClient;
+import com.jiguang.demo.base.provider.BaseProvider;
 import com.jiguang.demo.base.service.DbRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2017/11/27
  */
 @RestController
-public class BaseController implements BaseServiceClient {
+public class BaseController implements BaseProvider {
 
     @Autowired
     DbRouteService dbRouteService;

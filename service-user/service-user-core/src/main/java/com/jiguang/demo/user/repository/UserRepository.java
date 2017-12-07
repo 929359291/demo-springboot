@@ -1,6 +1,6 @@
 package com.jiguang.demo.user.repository;
 
-import com.jiguang.demo.user.api.entity.User;
+import com.jiguang.demo.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

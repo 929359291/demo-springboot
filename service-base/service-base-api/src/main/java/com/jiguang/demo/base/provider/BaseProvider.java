@@ -1,4 +1,4 @@
-package com.jiguang.demo.base.api.client;
+package com.jiguang.demo.base.provider;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create 2017/12/7
  */
 @RequestMapping("/base")
-public interface BaseServiceClient {
+public interface BaseProvider {
 
     @RequestMapping("/ds-route/insert-user-id")
     String insertUserId(@RequestParam("id") Long id,@RequestParam("ds") String ds);

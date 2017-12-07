@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 继承模板配置 -->
+    <include resource="cn/jpush/spring/logging/logback/base/jiguang-logback-common.xml" />
+    <include resource="cn/jpush/spring/logging/logback/base/jiguang-logback-console-appender.xml" />
+    
+    <root level="info">
+        <appender-ref ref="ASYNC_STDOUT" />
+    </root>
+</included>

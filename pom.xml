@@ -19,6 +19,7 @@
         <module>eureka</module>
         <module>service-base</module>
         <module>service-user</module>
+        <module>framework-service-support</module>
     </modules>
 
     <properties>

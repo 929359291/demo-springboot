@@ -1,4 +1,4 @@
-package com.jiguang.demo.user.api.entity;
+package com.jiguang.demo.user.entity;
 
 /**
  * @author liups

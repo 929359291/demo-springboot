@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <!-- ELK专属Log输出 -->
+    <appender name="ELK"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <fileNamePattern>${ELK_LOG_HOME}/${APPLICATION_NAME}/%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--日志文件保留天数-->
+            <maxHistory>30</maxHistory>
+            <!--日志最多占用空间-->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "project": "${APPLICATION_NAME}",
+                        "index": "${APPLICATION_NAME}-%date{\"yyyy-MM\"}",
+                        "timestamp": "%date{\"yyyy-MM-dd'T'HH:mm:ss.SSSZZ\"}",
+                        "log_level": "%level",
+                        "thread": "%thread",
+                        "class_name": "%class",
+                        "line_number": "%line",
+                        "message": "%message",
+                        "stack_trace": "%exception{5}",
+                        "trace": "%X{X-B3-TraceId:-}",
+                        "span": "%X{X-B3-SpanId:-}",
+                        "parent": "%X{X-B3-ParentSpanId:-}",
+                        "exportable": "%X{X-Span-Export:-}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+
+    <appender name="ASYNC_ELK" class= "ch.qos.logback.classic.AsyncAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${ELK_LOG_LEVEL}</level>
+        </filter>
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <includeCallerData>${asyncIncludeCallerData}</includeCallerData>
+        <appender-ref ref ="ELK"/>
+    </appender>
+
+</included>
