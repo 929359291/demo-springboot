@@ -1,0 +1,64 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+sharding:
+  jdbc:
+    datasource:
+      names: druid_demo_1_master,druid_demo_1_slave,druid_demo_1_slave_2,druid_demo_2
+      druid_demo_1_master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/druid_demo_1
+        username: root
+        password: root
+      druid_demo_1_slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/druid_demo_1_slave
+        username: root
+        password: root
+      druid_demo_1_slave_2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/druid_demo_1_slave_2
+        username: root
+        password: root
+      druid_demo_2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/druid_demo_2
+        username: root
+        password: root
+    config:
+      sharding:
+        tables:
+          ORDER:
+#            actual-data-nodes: druid_demo_${1..2}.order${1..2}
+            table-strategy:
+              inline:
+                sharding-column: ID
+                algorithm-expression: ORDER${ID % 2 + 1}
+            database-strategy:
+              complex:
+                sharding-columns: DB_COLUMN_NAME
+                algorithm-class-name: com.jiguang.demo.user.sharding.algorithm.CustomDsComplexKeysShardingAlgorithm
+#            actual-data-nodes: druid_demo_${1..2}.user
+#            keyGeneratorColumnName: ID
+        default-database-strategy:
+#          inline:
+#            shardingColumn: USER_ID
+#            algorithmExpression: druid_demo_${USER_ID % 2 + 1}
+          hint:
+            algorithm-class-name: com.jiguang.demo.user.sharding.algorithm.CustomDsHintShardingAlgorithm
+        master-slave-rules:
+          druid_demo_1:
+            master-data-source-name: druid_demo_1_master
+            slave-data-source-names: druid_demo_1_slave,druid_demo_1_slave_2
+

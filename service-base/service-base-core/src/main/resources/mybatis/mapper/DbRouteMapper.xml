@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiguang.demo.base.repository.DbRouteRepository">
+
+    <insert id="insert" >
+        INSERT INTO DB_ROUTE (
+          USER_ID, DS
+        )
+        VALUES (
+        #{userId,jdbcType=INTEGER},
+        #{ds,jdbcType=VARCHAR}
+        )
+    </insert>
+    
+    <delete id="delete">
+        DELETE FROM DB_ROUTE WHERE USER_ID = #{userId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="findByUserId" resultType="DbRoute">
+        SELECT * FROM DB_ROUTE WHERE USER_ID = #{userId,jdbcType=INTEGER}
+    </select>
+</mapper>

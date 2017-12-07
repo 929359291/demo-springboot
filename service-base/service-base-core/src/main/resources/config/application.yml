@@ -1,0 +1,36 @@
+server:
+  port: 8181
+
+mybatis:
+  type-aliases-package: com.jiguang.demo.base.api.entity
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  config-locations: classpath:mybatis/mybatis-config.xml
+
+spring:
+  application:
+    name: service-base
+  profiles:
+    active:
+    - '@profileActive@'
+
+#    include:
+#  datasource:
+#    druid:
+#      web-stat-filter:
+#        principalSessionName: userName
+
+management:
+  add-application-context-header: false
+  security:
+    enabled: false
+  context-path: /spring-manager
+  port: 28181
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      management.port: ${management.port}
+logging:
+  extends:
+    maxHistory: 90
