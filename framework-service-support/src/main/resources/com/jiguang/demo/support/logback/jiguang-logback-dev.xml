@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 继承模板配置 -->
+    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-common.xml" />
+    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-console-appender.xml" />
+    
+    <root level="info">
+        <appender-ref ref="ASYNC_STDOUT" />
+    </root>
+</included>

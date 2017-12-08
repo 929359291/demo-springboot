@@ -5,18 +5,12 @@
 
     <property name="logDir" value="logs" />
     <!-- 默认不会删除日志 -->
+    <property name="maxHistory" value="${maxHistory:-0}"/>
     <property name="pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } --- [%15.15t] %logger - %m%n"/>
     <property name="CONSOLE_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%logger){cyan} %clr(-){faint} %m%n%wEx"/>
     <property name="asyncIncludeCallerData" value="false"/>
     
     <logger name="com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver" level="ERROR"/>
-    <!-- 不设置defaultValue的原因是允许test环境配置中再次指定参数 -->
-    <springProperty name="maxHistory" source="logging.extends.maxHistory" />
-    <springProperty name="APPLICATION_NAME" source="spring.application.name" defaultValue="UNKNOWN" />
-    <springProperty name="ELK_LOG_HOME" source="elk.log.home" defaultValue="/opt/developer/elk_logs" />
-    <springProperty name="ELK_LOG_LEVEL" source="elk.log.level" defaultValue="DEBUG" />
-    <!-- 关闭logback项目本身的日志输出，如果要观察logback的启动日志，可以注释掉 -->
-    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
     <jmxConfigurator />
 
 </included>

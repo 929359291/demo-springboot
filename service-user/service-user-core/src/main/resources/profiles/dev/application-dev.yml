@@ -3,9 +3,9 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8888/eureka
 
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 sharding:

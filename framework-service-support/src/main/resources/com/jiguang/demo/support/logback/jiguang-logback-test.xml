@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <!-- 继承模板配置 -->
+    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-common.xml" />
+    <!-- 个性化配置 -->
+    <property name="maxHistory" value="${maxHistory:-60}"/>
+    <!-- 引入appender -->
+    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-console-appender.xml" />
+    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-info-appender.xml" />
+    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-error-appender.xml" />
+    
+    
+    <root level="info">
+        <appender-ref ref="ASYNC_STDOUT" />
+        <appender-ref ref="ASYNC_INFO" />
+        <appender-ref ref="ASYNC_ERROR" />
+    </root>
+</included>

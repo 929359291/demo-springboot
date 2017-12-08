@@ -8,6 +8,8 @@ import com.jiguang.demo.user.consumer.BaseFeignConsumer;
 import com.jiguang.demo.user.service.OrderService;
 import com.jiguang.demo.user.service.UserService;
 import com.jiguang.demo.user.sharding.SelectedDatabase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
  */
 @RestController
 public class UserController implements UserProvider {
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
@@ -34,6 +37,7 @@ public class UserController implements UserProvider {
 
     @Override
     public String insertUser(Long id, String name, String password){
+
         SelectedDatabase.newInstance(getDsByUserId(id));
         userService.insert(id,name + id,password);
         return "true";
@@ -56,6 +60,8 @@ public class UserController implements UserProvider {
 
     @Override
     public String login(HttpServletRequest request, String name){
+        logger.debug("login:{}" , name);
+
         SelectedDatabase.newInstance(new ArrayList<String>(){{
             add("druid_demo_2");
             add("druid_demo_1");

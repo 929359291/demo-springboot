@@ -2,8 +2,8 @@
 <included>
 
     <!-- ELK专属Log输出 -->
-    <appender name="ELK"  class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    <appender name="ELK"  class="ch.qos.com.jiguang.demo.support.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.com.jiguang.demo.support.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
             <fileNamePattern>${ELK_LOG_HOME}/${APPLICATION_NAME}/%d{yyyy-MM-dd}.log</fileNamePattern>
             <!--日志文件保留天数-->
@@ -11,7 +11,7 @@
             <!--日志最多占用空间-->
             <totalSizeCap>100GB</totalSizeCap>
         </rollingPolicy>
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+        <encoder class="net.logstash.com.jiguang.demo.support.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <pattern>
                     <pattern>
@@ -37,10 +37,10 @@
     </appender>
 
 
-    <appender name="ASYNC_ELK" class= "ch.qos.logback.classic.AsyncAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>${ELK_LOG_LEVEL}</level>
-        </filter>
+    <appender name="ASYNC_ELK" class= "ch.qos.com.jiguang.demo.support.logback.classic.AsyncAppender">
+        <!--<filter class="ch.qos.com.jiguang.demo.support.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>${ELK_LOG_LEVEL}</level>-->
+        <!--</filter>-->
         <discardingThreshold>0</discardingThreshold>
         <queueSize>512</queueSize>
         <includeCallerData>${asyncIncludeCallerData}</includeCallerData>

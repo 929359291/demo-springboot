@@ -121,7 +121,6 @@
             </resource>
             <resource>
                 <directory>src/main/resources/profiles/${profileActive}</directory>
-                <targetPath>config</targetPath>
             </resource>
         </resources>
 
