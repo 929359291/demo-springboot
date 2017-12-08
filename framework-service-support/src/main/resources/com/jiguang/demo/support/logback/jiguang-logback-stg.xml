@@ -5,7 +5,7 @@
     <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-console-appender.xml" />
     <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-info-appender.xml" />
     <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-error-appender.xml" />
-    <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-alarm-appender.xml" />
+    <!--<include resource="com/jiguang/demo/support/logback/base/jiguang-logback-alarm-appender.xml" />-->
     <include resource="com/jiguang/demo/support/logback/base/jiguang-logback-elk-appender.xml" />
 
     <logger name="com.alibaba.druid.filter.stat.StatFilter" additivity="false">
