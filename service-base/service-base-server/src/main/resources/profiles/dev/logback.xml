@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <logger name="com.jiguang.demo.base" level="DEBUG" />
+    <include resource="com/jiguang/demo/support/logback/jiguang-logback-dev.xml" />
+
+</configuration>

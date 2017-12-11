@@ -2,28 +2,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>service-base</artifactId>
-        <groupId>com.jiguang</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-base-api</artifactId>
+    <parent>
+        <artifactId>demo-parent</artifactId>
+        <groupId>com.jiguang</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../demo-parent</relativePath>
+    </parent>
 
-    <properties>
-        <framework-api-support.version>${parent.version}</framework-api-support.version>
-    </properties>
+    <artifactId>framework-api-support</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jiguang</groupId>
-            <artifactId>framework-api-support</artifactId>
-            <version>${framework-api-support.version}</version>
         </dependency>
     </dependencies>
 
