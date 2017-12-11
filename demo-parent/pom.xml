@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <properties>
         <jdk.version>1.8</jdk.version>
+        <project.mainClass>none</project.mainClass><!-- 此属性在这配置只是因为不想让下面的引用报错，微服务中的启动设置要单独设置 -->
     </properties>
 
 
@@ -31,6 +32,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <pluginRepositories>
+
+    </pluginRepositories>
+    <repositories>
+
+    </repositories>
 
     <profiles>
         <profile>
@@ -49,6 +57,40 @@
             </properties>
         </profile>
     </profiles>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <mainClass>${project.mainClass}</mainClass>
+                        <finalName>${project.artifactId}</finalName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
 
 
 
