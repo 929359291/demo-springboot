@@ -112,26 +112,7 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
-                <excludes>
-                    <exclude>profiles/**</exclude>
-                </excludes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources/profiles/${profileActive}</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+
 
         <plugins>
             <plugin>
