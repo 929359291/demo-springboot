@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.20.39:8888/eureka
+      defaultZone: http://192.168.52.124:8888/eureka
 
 mybatis:
   configuration:

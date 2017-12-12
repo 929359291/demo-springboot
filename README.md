@@ -2,7 +2,7 @@
 
 本项目是一个demo项目。主要用来规划模块结构和模块里面的目录结构。便于以后有一个统一的开发规范。
 
-## XXXX-parent(demo-parent) 
+## XXXX-parent(project-parent) 
 整个项目的父模块，主要用来定义各个工程pom文件公共的模块属性管理，每个模块都必须继承这个模块。
 * properties 公共属性
 * repositories 项目私有库地址
