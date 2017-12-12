@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8888/eureka
+      defaultZone: http://192.168.52.124:8888/eureka
 
 mybatis:
   configuration:
@@ -10,7 +10,7 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.20.39:3306/jiguang
-    username: root
-    password: root
+    url: jdbc:mysql://192.168.52.113:3306/jiguang
+    username: liups
+    password: 8Q2YrLAY5zPCscSj
 

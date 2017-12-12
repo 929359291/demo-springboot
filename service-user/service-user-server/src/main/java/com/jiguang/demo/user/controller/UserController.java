@@ -1,6 +1,7 @@
 package com.jiguang.demo.user.controller;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.jiguang.demo.user.helper.UserIdHelper;
 import com.jiguang.demo.user.provider.UserProvider;
 import com.jiguang.demo.user.entity.Order;
 import com.jiguang.demo.user.entity.User;
@@ -37,7 +38,7 @@ public class UserController implements UserProvider {
 
     @Override
     public String insertUser(Long id, String name, String password){
-
+        baseFeignConsumer.insertUserId(id, UserIdHelper.calDataSourceNameByUserName(id));
         SelectedDatabase.newInstance(getDsByUserId(id));
         userService.insert(id,name + id,password);
         return "true";
