@@ -11,14 +11,14 @@
 * pluginManagement 插件版本及相关公共配置管理
 * profiles 公共的环境相关配置
 
-## framework-api-support 
+## framework-api-common 
 所有微服务的api模块的公共抽取
 * 公共的模块依赖
 * 公共异常：exceptions 目录下
 * 公共异常的信息：messages 目录下
 * 公共的常量：constants 目录下
 
-## framework-server-support
+## framework-server-common
 所有微服务的server模块的公共抽取
 * 公共的模块依赖
 * 公共代码抽取

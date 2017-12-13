@@ -11,7 +11,7 @@
         <relativePath>../project-parent</relativePath>
     </parent>
 
-    <artifactId>framework-api-support</artifactId>
+    <artifactId>framework-api-common</artifactId>
 
     <dependencies>
         <dependency>

@@ -16,7 +16,7 @@
     <properties>
         <service-user-api.version>${parent.version}</service-user-api.version>
         <service-base-api.version>${parent.version}</service-base-api.version>
-        <framework-server-support.version>${parent.version}</framework-server-support.version>
+        <framework-server-common.version>${parent.version}</framework-server-common.version>
         <project.mainClass>com.jiguang.demo.user.BootStrap</project.mainClass>
     </properties>
 
@@ -26,47 +26,16 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
         <!--</dependency>-->
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -78,24 +47,11 @@
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>2.0.0.M3</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.jiguang</groupId>
             <artifactId>service-user-api</artifactId>
             <version>${service-user-api.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.jiguang</groupId>
             <artifactId>service-base-api</artifactId>
@@ -103,8 +59,8 @@
         </dependency>
         <dependency>
             <groupId>com.jiguang</groupId>
-            <artifactId>framework-server-support</artifactId>
-            <version>${framework-server-support.version}</version>
+            <artifactId>framework-server-common</artifactId>
+            <version>${framework-server-common.version}</version>
         </dependency>
 
     </dependencies>

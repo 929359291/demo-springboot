@@ -11,8 +11,8 @@
 
     <modules>
         <module>project-parent</module>
-        <module>framework-api-support</module>
-        <module>framework-server-support</module>
+        <module>framework-api-common</module>
+        <module>framework-server-common</module>
         <module>eureka</module>
         <module>service-base</module>
         <module>service-user</module>

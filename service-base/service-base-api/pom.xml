@@ -12,7 +12,7 @@
     <artifactId>service-base-api</artifactId>
 
     <properties>
-        <framework-api-support.version>${parent.version}</framework-api-support.version>
+        <framework-api-common.version>${parent.version}</framework-api-common.version>
     </properties>
 
     <dependencies>
@@ -22,8 +22,8 @@
         </dependency>
         <dependency>
             <groupId>com.jiguang</groupId>
-            <artifactId>framework-api-support</artifactId>
-            <version>${framework-api-support.version}</version>
+            <artifactId>framework-api-common</artifactId>
+            <version>${framework-api-common.version}</version>
         </dependency>
     </dependencies>
 
