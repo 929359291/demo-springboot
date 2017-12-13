@@ -6,6 +6,7 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/**/*.xml
   config-locations: classpath:mybatis/mybatis-config.xml
 
+
 spring:
   application:
     name: service-user

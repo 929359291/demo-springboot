@@ -17,6 +17,7 @@
         <module>service-base</module>
         <module>service-user</module>
         <module>turbine</module>
+        <module>zipkin</module>
     </modules>
 
 </project>

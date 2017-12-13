@@ -8,6 +8,8 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 spring:
+  zipkin:
+    base-url: http://localhost:8002
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.20.39:3306/jiguang
