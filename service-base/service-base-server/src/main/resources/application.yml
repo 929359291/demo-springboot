@@ -19,12 +19,12 @@ spring:
 #      web-stat-filter:
 #        principalSessionName: userName
 
-#management:
+management:
 #  add-application-context-header: false
 #  security:
 #    enabled: false
 #  context-path: /spring-manager
-#  port: 28181
+  port: 2${server.port}
 
 eureka:
   instance:
