@@ -18,12 +18,11 @@ spring:
 #      web-stat-filter:
 #        principalSessionName: userName
 
-management:
-  add-application-context-header: false
-  security:
-    enabled: false
-  context-path: /spring-manager
-  port: 28182
+#management:
+#  add-application-context-header: false
+#  security:
+#    enabled: false
+#  context-path: /spring-manager
 
 eureka:
   instance:
@@ -37,6 +36,14 @@ logging:
 ribbon:
   ConnectTimeout: 5000
   ReadTimeout: 30000
+
 feign:
   hystrix:
-    enabled: false
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE

@@ -14,7 +14,7 @@
 
     <properties>
         <!-- Stand-alone RESTFul application for testing only -->
-        <project.mainClass>com.jiguang.eureka.EurekaApplication</project.mainClass>
+        <project.mainClass>com.jiguang.eureka.DashboardApplication</project.mainClass>
     </properties>
 
     <dependencies>

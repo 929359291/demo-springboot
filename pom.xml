@@ -16,6 +16,7 @@
         <module>eureka</module>
         <module>service-base</module>
         <module>service-user</module>
+        <module>turbine</module>
     </modules>
 
 </project>
