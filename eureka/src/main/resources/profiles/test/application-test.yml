@@ -9,4 +9,4 @@ eureka:
     serviceUrl:
       defaultZone: http://192.168.52.124:8888/eureka/
   server:
-    enable-self-preservation: true
+    enable-self-preservation: false
