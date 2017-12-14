@@ -31,6 +31,8 @@ eureka:
     prefer-ip-address: true
     metadata-map:
       management.port: ${management.port}
+#      cluster: MAIN
+
 logging:
   extends:
     maxHistory: 90

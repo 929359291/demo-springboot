@@ -9,9 +9,20 @@ server:
   port: 8001
 
 turbine:
+  appConfig: service-user,service-base
 #  aggregator:
-#    clusterConfig: service-user
-  appConfig: service-user
+#    clusterConfig: SERVICE-USER,SERVICE-BASE
+#  clusterNameExpression: metadata['cluster']
+  clusterNameExpression: "'default'"
 #  instanceUrlSuffix:
 #    default: /spring-manager/hystrix.stream
-  clusterNameExpression: "'default'"
+
+# 参数说明
+# turbine.appConfig: #配置Eureka中的serviceId列表，表明监控哪些服务
+# turbine.aggregator.clusterConfig:  #监控的集群信息,指定聚合哪些集群，多个使用","分割，默认为default。可使用http://.../turbine.stream?cluster={clusterConfig之一}访问
+# turbine.clusterNameExpression: metadata['cluster']    #集群信息的获取方式（metadata['cluster']表示应用配置里面的eureka.instance.metadata-map.cluster）
+# 1. clusterNameExpression指定集群名称，默认表达式appName；此时：turbine.aggregator.clusterConfig需要配置想要监控的应用名称
+# 2. 当clusterNameExpression: "'default'" 时，turbine.aggregator.clusterConfig可以不写，因为默认就是default
+# 3. 当clusterNameExpression: metadata['cluster']时，假设想要监控的应用配置了eureka.instance.metadata-map.cluster: ABC，则需要配置，同时turbine.aggregator.clusterConfig: ABC
+# turbine.instanceUrlSuffix  # 各实例访问前缀如：service-user里面有配置management.context-path: /spring-manager，则配置turbine.instanceUrlSuffix.service-user: /spring-manager/hystrix.stream
+

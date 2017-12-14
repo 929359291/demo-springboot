@@ -9,4 +9,4 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8888/eureka/
   server:
-    enable-self-preservation: false
+    enable-self-preservation: true
