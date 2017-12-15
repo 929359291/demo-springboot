@@ -4,7 +4,7 @@ package com.jiguang.demo.constants;
  * @author liups
  * @create 2017/12/14
  */
-public enum  CommonHttpStatus implements HttpStatusCode {
+public enum HttpStatus {
     SUCCESS(200,"请求成功"),
     BAD_REQUEST(400, "请求的参数个数或格式不符合要求"),
     INVALID_ARGUMENT(400, "请求的参数不正确"),
@@ -20,16 +20,15 @@ public enum  CommonHttpStatus implements HttpStatusCode {
     GATEWAY_TIMEOUT(504, "请求服务超时");
 
     private int status;
-
     private String message;
 
-    CommonHttpStatus(int status, String message) {
+    HttpStatus(int status,String message) {
         this.status = status;
         this.message = message;
     }
 
-    public static CommonHttpStatus fromHttpStatus(int httpStatus) {
-        for(CommonHttpStatus errorCode : values()) {
+    public static HttpStatus fromHttpStatus(int httpStatus) {
+        for(HttpStatus errorCode : values()) {
             if(errorCode.getStatus() == httpStatus) {
                 return errorCode;
             }
@@ -38,18 +37,17 @@ public enum  CommonHttpStatus implements HttpStatusCode {
     }
 
 
-    @Override
     public String getCode() {
         //TODO 获取和http错误相关的code
         return status + "";
     }
 
-    @Override
     public int getStatus() {
         return status;
     }
 
-    @Override
+
+
     public String getMessage() {
         return message;
     }

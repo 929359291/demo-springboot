@@ -1,6 +1,6 @@
 package com.jiguang.demo.exceptions;
 
-import com.jiguang.demo.constants.CommonHttpStatus;
+import com.jiguang.demo.constants.HttpStatus;
 
 /**
  * 数据库中表现为U：User 代表正常提示用户信息
@@ -14,7 +14,7 @@ public class AppUserException extends BaseException {
     }
 
     public AppUserException(String message, String sysCode, String code) {
-        super(message, sysCode, code, CommonHttpStatus.SUCCESS.getStatus());
+        super(message, sysCode, code, HttpStatus.SUCCESS.getStatus());
     }
 
 }

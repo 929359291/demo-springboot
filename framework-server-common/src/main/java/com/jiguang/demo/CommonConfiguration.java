@@ -3,6 +3,7 @@ package com.jiguang.demo;
 import com.jiguang.demo.constants.ApplicationConstant;
 import com.jiguang.demo.helper.ApplicationContextHelper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @create 2017/12/15
  */
 @Configuration
+@ComponentScan
 public class CommonConfiguration {
 
     @Bean

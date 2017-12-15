@@ -1,6 +1,6 @@
 package com.jiguang.demo.exceptions;
 
-import com.jiguang.demo.constants.CommonHttpStatus;
+import com.jiguang.demo.constants.HttpStatus;
 
 /**
  * 数据库中表现为E：Error 代表错误异常，一般为程序级别
@@ -14,7 +14,7 @@ public class AppErrorException extends BaseException {
     }
 
     public AppErrorException(String message, String sysCode, String code) {
-        super(message, sysCode, code, CommonHttpStatus.INTERNAL_ERROR.getStatus());
+        super(message, sysCode, code, HttpStatus.INTERNAL_ERROR.getStatus());
     }
 
     public AppErrorException(String message, String sysCode, String code, int httpStatus) {

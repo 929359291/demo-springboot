@@ -5,5 +5,5 @@ package com.jiguang.demo.messages;
  * @create 2017/12/14
  */
 public enum  AppMessageServiceType {
-    F,E,U;
+    F,E,U
 }

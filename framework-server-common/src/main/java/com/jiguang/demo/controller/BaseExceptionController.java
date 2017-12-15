@@ -1,13 +1,14 @@
 package com.jiguang.demo.controller;
 
-import com.jiguang.demo.constants.CommonHttpStatus;
+import com.jiguang.demo.constants.ApplicationConstant;
+import com.jiguang.demo.constants.HttpStatus;
 import com.jiguang.demo.messages.ErrorMessage;
 import com.jiguang.demo.utils.JsonUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.AbstractErrorController;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -33,6 +34,9 @@ public class BaseExceptionController extends AbstractErrorController {
 
     private final ErrorProperties errorProperties;
 
+    @Autowired
+    ApplicationConstant applicationConstant;
+
     public BaseExceptionController(ErrorAttributes errorAttributes,
                                 ErrorProperties errorProperties, List<ErrorViewResolver> errorViewResolvers) {
         super(errorAttributes, errorViewResolvers);
@@ -48,9 +52,9 @@ public class BaseExceptionController extends AbstractErrorController {
     @RequestMapping(produces = "text/html")
     public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
 
-        HttpStatus status = getStatus(request);
-        CommonHttpStatus errorCode = CommonHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, request.getRequestURI(), status.getReasonPhrase());
+        org.springframework.http.HttpStatus status = getStatus(request);
+        HttpStatus errorCode = HttpStatus.fromHttpStatus(status.value());
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,null, status.getReasonPhrase());
         ModelAndView mav = new ModelAndView();
         MappingJackson2JsonView view = new MappingJackson2JsonView(JsonUtils.getObjectMapper());
         view.setAttributesMap(JsonUtils.object2Map(error));
@@ -63,9 +67,9 @@ public class BaseExceptionController extends AbstractErrorController {
     @RequestMapping
     @ResponseBody
     public ResponseEntity<String> error(HttpServletRequest request) {
-        HttpStatus status = getStatus(request);
-        CommonHttpStatus errorCode = CommonHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, request.getRequestURI(), status.getReasonPhrase());
+        org.springframework.http.HttpStatus status = getStatus(request);
+        HttpStatus errorCode = HttpStatus.fromHttpStatus(status.value());
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, null, status.getReasonPhrase());
         return new ResponseEntity<>(JsonUtils.object2Json(error), status);
     }
 

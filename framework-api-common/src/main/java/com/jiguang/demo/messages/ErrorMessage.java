@@ -3,25 +3,33 @@ package com.jiguang.demo.messages;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
+import java.util.Stack;
+
 /**
- * Created by liubin on 15-8-3.
+ * @author liups
+ * @create 2017/12/14
  */
-public class ErrorMessage {
+public class ErrorMessage implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private String code;
     private String sysCode;
     private String message;
-    private String requestUri;
+    /**
+     * 异常堆栈（可配置是否传递）
+     */
+    private Stack<ExceptionDetail> exceptionStack;
 
     @JsonCreator
     public ErrorMessage(@JsonProperty("code") String code,
                         @JsonProperty("sysCode") String sysCode,
-                        @JsonProperty("requestUri") String requestUri,
+                        @JsonProperty(value = "exceptionStack", defaultValue = "") Stack<ExceptionDetail> exceptionStack,
                         @JsonProperty(value = "message", defaultValue = "") String message) {
         this.code = code;
         this.sysCode = sysCode;
-        this.requestUri = requestUri;
         this.message = message;
+        this.exceptionStack = exceptionStack;
     }
 
     public String getCode() {
@@ -36,16 +44,45 @@ public class ErrorMessage {
         return message;
     }
 
-    public String getRequestUri() {
-        return requestUri;
+    public Stack<ExceptionDetail> getExceptionStack() {
+        return exceptionStack;
     }
 
-    @Override
-    public String toString() {
-        return "Error{" +
-                "code='" + code + '\'' +
-                ", message='" + message + '\'' +
-                ", requestUri='" + requestUri + '\'' +
-                '}';
+    public static class ExceptionDetail {
+        /**
+         * 系统Id
+         */
+        private String systemId;
+        /**
+         *  涉及的uri
+         */
+        private String requestUri;
+        /**
+         * 详细异常堆栈信息（可配置是否传递）
+         */
+        private String stackTrace;
+
+        @JsonCreator
+        public ExceptionDetail(@JsonProperty("systemId") String systemId,
+                               @JsonProperty("requestUri") String requestUri,
+                               @JsonProperty(value = "stackTrace", defaultValue = "") String stackTrace) {
+            this.systemId = systemId;
+            this.requestUri = requestUri;
+            this.stackTrace = stackTrace;
+        }
+
+        public String getSystemId() {
+            return systemId;
+        }
+
+        public String getRequestUri() {
+            return requestUri;
+        }
+
+        public String getStackTrace() {
+            return stackTrace;
+        }
+
     }
+
 }
