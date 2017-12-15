@@ -1,3 +1,8 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.jiguang.demo.CommonConfiguration
+com.jiguang.demo.CommonConfiguration,\
+com.jiguang.demo.MvcConfiguration
+
+
+
+

@@ -15,7 +15,7 @@ public class ApplicationContextHelper implements ApplicationContextAware {
 
     public static ApplicationConstant constant;
 
-    public static final ApplicationContextHelper INSTANCE = new ApplicationContextHelper();
+    private static final ApplicationContextHelper INSTANCE = new ApplicationContextHelper();
 
     private ApplicationContextHelper(){}
 
