@@ -36,14 +36,11 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 
     protected Logger logger = LoggerFactory.getLogger(BaseExceptionHandler.class);
 
-
     @Override
     protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers,
                                                          HttpStatus status, WebRequest request) {
 
         CommonHttpStatus badRequest = CommonHttpStatus.BAD_REQUEST;
-        //TODO 获取这个异常
-        BaseException exceptionByMsgId = AppMessageHelper.getExceptionByMsgId(0);
         List<ObjectError> allErrors = ex.getAllErrors();
         String errorMessage = extractErrorMessageFromObjectErrors(allErrors, badRequest.getMessage());
         return createResponseEntity(badRequest, request.getDescription(false), errorMessage);
@@ -93,7 +90,7 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleAppBusinessException(HttpServletRequest request, BaseException e) {
 
         //业务异常
-        return createResponseEntity(e.getCode(), e.getHttpStatus(), request.getRequestURI(), e.getMessage());
+        return createResponseEntity(e.getCode(), e.getSysCode(),e.getHttpStatus(), request.getRequestURI(), e.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
@@ -105,13 +102,14 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
-
     private ResponseEntity<Object> createResponseEntity(HttpStatusCode errorCode, String requestUri, String message) {
-        return createResponseEntity(errorCode.getCode(), errorCode.getStatus(), requestUri, message);
+        //TODO 获取基本的code
+        String sysCode = "default";
+        return createResponseEntity(errorCode.getCode(), sysCode,errorCode.getStatus(), requestUri, message);
     }
 
-    private ResponseEntity<Object> createResponseEntity(String code, int httpStatus, String requestUri, String message) {
-        ErrorMessage error = new ErrorMessage(code, requestUri, message);
+    private ResponseEntity<Object> createResponseEntity(String code, String sysCode,int httpStatus, String requestUri, String message) {
+        ErrorMessage error = new ErrorMessage(code, sysCode,requestUri, message);
         String json = JsonUtils.object2Json(error);
 
         return ResponseEntity.status(HttpStatus.valueOf(httpStatus)).body(json);

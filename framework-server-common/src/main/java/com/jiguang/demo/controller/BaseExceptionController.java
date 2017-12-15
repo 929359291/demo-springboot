@@ -28,6 +28,9 @@ import java.util.List;
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class BaseExceptionController extends AbstractErrorController {
 
+    //TODO
+    private String sysCode = "default";
+
     private final ErrorProperties errorProperties;
 
     public BaseExceptionController(ErrorAttributes errorAttributes,
@@ -47,7 +50,7 @@ public class BaseExceptionController extends AbstractErrorController {
 
         HttpStatus status = getStatus(request);
         CommonHttpStatus errorCode = CommonHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(), request.getRequestURI(), status.getReasonPhrase());
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, request.getRequestURI(), status.getReasonPhrase());
         ModelAndView mav = new ModelAndView();
         MappingJackson2JsonView view = new MappingJackson2JsonView(JsonUtils.getObjectMapper());
         view.setAttributesMap(JsonUtils.object2Map(error));
@@ -62,7 +65,7 @@ public class BaseExceptionController extends AbstractErrorController {
     public ResponseEntity<String> error(HttpServletRequest request) {
         HttpStatus status = getStatus(request);
         CommonHttpStatus errorCode = CommonHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(), request.getRequestURI(), status.getReasonPhrase());
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, request.getRequestURI(), status.getReasonPhrase());
         return new ResponseEntity<>(JsonUtils.object2Json(error), status);
     }
 

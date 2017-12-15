@@ -40,7 +40,8 @@ public enum  CommonHttpStatus implements HttpStatusCode {
 
     @Override
     public String getCode() {
-        return this.name();
+        //TODO 获取和http错误相关的code
+        return status + "";
     }
 
     @Override
