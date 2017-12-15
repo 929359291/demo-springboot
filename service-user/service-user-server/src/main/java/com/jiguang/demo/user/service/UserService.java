@@ -1,7 +1,7 @@
 package com.jiguang.demo.user.service;
 
 import com.jiguang.demo.user.entity.User;
-import com.jiguang.demo.user.repository.UserRepository;
+import com.jiguang.demo.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    UserDao userRepository;
 
     @Transactional( propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
     public void insert(Long id, String name, String password) {

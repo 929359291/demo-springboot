@@ -1,10 +1,10 @@
-package com.jiguang.demo.user.repository;
+package com.jiguang.demo.user.dao;
 
 import com.jiguang.demo.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface UserRepository {
+public interface UserDao {
 
     /**
      * @param model

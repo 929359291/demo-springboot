@@ -1,7 +1,7 @@
 package com.jiguang.demo.base.service;
 
 import com.jiguang.demo.base.entity.DbRoute;
-import com.jiguang.demo.base.repository.DbRouteRepository;
+import com.jiguang.demo.base.dao.DbRouteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DbRouteService {
     @Autowired
-    DbRouteRepository dbRouteRepository;
+    DbRouteDao dbRouteRepository;
 
     @Transactional( propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
     public void insert(Long userId,String ds) {

@@ -1,11 +1,12 @@
 package com.jiguang.demo.user.service;
 
 import com.jiguang.demo.user.entity.Order;
-import com.jiguang.demo.user.repository.OrderRepository;
+import com.jiguang.demo.user.dao.OrderDao;
 import io.shardingjdbc.core.api.HintManager;
 import io.shardingjdbc.core.hint.HintManagerHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author liups
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
     @Autowired
-    OrderRepository orderRepository;
+    OrderDao orderRepository;
 
     public void insert(Long id, Long userId, String orderName) {
         HintManagerHolder.clear();

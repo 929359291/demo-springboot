@@ -1,10 +1,10 @@
-package com.jiguang.demo.base.repository;
+package com.jiguang.demo.base.dao;
 
 import com.jiguang.demo.base.entity.DbRoute;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface DbRouteRepository {
+public interface DbRouteDao {
 
     /**
      * @param model

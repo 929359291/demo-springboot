@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseAspect {
 
     //TODO 切面
-    @Pointcut("execution(* com.jiguang.demo.user.repository..*.*(..))")
+    @Pointcut("execution(* com.jiguang.demo.user.dao..*.*(..))")
     private void databasePointcut(){}//定义一个切入点
 
     /**

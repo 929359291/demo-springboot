@@ -28,7 +28,9 @@ public class BaseController implements BaseProvider {
     @Override
     public String getDsByUserId(Long userId){
         logger.debug("getDsByUserId:{}",sysId);
-
+        if(userId != null && userId == 250){
+            throw new RuntimeException("抛出异常");
+        }
         String ds = dbRouteService.findByUserId(userId).getDs();
         return ds;
 
