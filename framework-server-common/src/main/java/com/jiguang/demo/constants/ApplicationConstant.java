@@ -27,6 +27,7 @@ public class ApplicationConstant {
      * 描述 : 是否输出异常堆栈详情（即异常详情）
      */
     @NotNull
+//    @Value("${timer.userAge:22}")
     private boolean outputExceptionStackTrace = false;
 
 
@@ -38,7 +39,15 @@ public class ApplicationConstant {
         return outputExceptionStack;
     }
 
+    public void setOutputExceptionStack(boolean outputExceptionStack) {
+        this.outputExceptionStack = outputExceptionStack;
+    }
+
     public boolean isOutputExceptionStackTrace() {
         return outputExceptionStackTrace;
+    }
+
+    public void setOutputExceptionStackTrace(boolean outputExceptionStackTrace) {
+        this.outputExceptionStackTrace = outputExceptionStackTrace;
     }
 }

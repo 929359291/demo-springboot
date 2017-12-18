@@ -142,17 +142,18 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
     public static ErrorMessage buildErrorMessage(ApplicationConstant applicationConstant,String requestUri,String code,String sysCode,
                                                  String message,Throwable throwable,Stack<ErrorMessage.ExceptionDetail> exceptionStack){
         if(applicationConstant.isOutputExceptionStack()){
-            ErrorMessage.ExceptionDetail  exceptionDetail;
-            String stackTrace = null;
-            //TODO 获取机器ID？
-            String systemId = applicationConstant.getApplicationName();
-            if(applicationConstant.isOutputExceptionStackTrace()){
-                stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(throwable);
-            }
-            exceptionDetail = new ErrorMessage.ExceptionDetail(systemId,requestUri,stackTrace);
             if(exceptionStack == null){
                 exceptionStack = new Stack();
             }
+            ErrorMessage.ExceptionDetail  exceptionDetail;
+            //TODO 获取机器ID？
+            String systemId = applicationConstant.getApplicationName();
+            String stackTrace = null;
+            //只有刚抛出的微服务才记录异常详细堆栈
+            if(applicationConstant.isOutputExceptionStackTrace() && exceptionStack.empty()){
+                stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(throwable);
+            }
+            exceptionDetail = new ErrorMessage.ExceptionDetail(systemId,requestUri,stackTrace);
             if(exceptionDetail != null){
                 exceptionStack.push(exceptionDetail);
             }
