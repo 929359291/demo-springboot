@@ -3,21 +3,17 @@ package com.jiguang.demo.handler;
 import com.google.common.base.Joiner;
 import com.jiguang.demo.ResponseResult;
 import com.jiguang.demo.constants.ApplicationConstant;
-import com.jiguang.demo.constants.HttpStatus;
-import com.jiguang.demo.messages.ErrorMessage;
+import com.jiguang.demo.constants.CustomHttpStatus;
 import com.jiguang.demo.exceptions.BaseException;
+import com.jiguang.demo.messages.ErrorMessage;
 import com.jiguang.demo.utils.JsonUtils;
-import com.netflix.hystrix.exception.HystrixRuntimeException;
-import com.netflix.hystrix.exception.HystrixTimeoutException;
-import org.apache.commons.lang.exception.ExceptionUtils;
+import com.jiguang.demo.utils.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -42,27 +38,27 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
     @Autowired
     ApplicationConstant applicationConstant;
 
-    @Override
-    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers,
-                                                         org.springframework.http.HttpStatus status, WebRequest request) {
-        //无效路径
-        HttpStatus badRequest = HttpStatus.BAD_REQUEST;
-        List<ObjectError> allErrors = ex.getAllErrors();
-        String errorMessage = extractErrorMessageFromObjectErrors(allErrors, badRequest.getMessage());
-        return createResponseEntity(badRequest, request.getDescription(false), errorMessage,ex);
+//    @Override
+//    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers,
+//                                                         org.springframework.http.HttpStatus status, WebRequest request) {
+//        //无效路径
+//        CustomHttpStatus badRequest = CustomHttpStatus.BAD_REQUEST;
+//        List<ObjectError> allErrors = ex.getAllErrors();
+//        String errorMessage = extractErrorMessageFromObjectErrors(allErrors, badRequest.getMessage());
+//        return createResponseEntity(badRequest, request.getDescription(false), errorMessage,ex);
+//
+//    }
 
-    }
-
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, org.springframework.http.HttpStatus status,
-                                                                  WebRequest request) {
-        //无效参数
-        HttpStatus errorCode = HttpStatus.BAD_REQUEST;
-        List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
-        String errorMessage = extractErrorMessageFromObjectErrors(allErrors, errorCode.getMessage());
-        return createResponseEntity(errorCode, request.getDescription(false), errorMessage,ex);
-    }
+//    @Override
+//    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+//                                                                  HttpHeaders headers, org.springframework.http.HttpStatus status,
+//                                                                  WebRequest request) {
+//        //无效参数
+//        CustomHttpStatus errorCode = CustomHttpStatus.BAD_REQUEST;
+//        List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
+//        String errorMessage = extractErrorMessageFromObjectErrors(allErrors, errorCode.getMessage());
+//        return createResponseEntity(errorCode, request.getDescription(false), errorMessage,ex);
+//    }
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body,
@@ -70,25 +66,25 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
                                                              WebRequest request) {
         //spring mvc 异常
         logger.error("spring mvc 异常: " + ex.getMessage(), ex);
-        HttpStatus errorCode = HttpStatus.fromHttpStatus(status.value());
+        CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
         return createResponseEntity(errorCode, request.getDescription(false), errorCode.getMessage(),ex);
     }
 
-    @ExceptionHandler(value = HystrixTimeoutException.class)
-    public ResponseEntity<Object> handleHystrixTimeoutException(HttpServletRequest request, HystrixTimeoutException e) {
-        //服务超时
-        logger.error(e.getMessage(), e);
-        HttpStatus errorCode = HttpStatus.GATEWAY_TIMEOUT;
-        return createResponseEntity(errorCode, request.getRequestURI(), e.getMessage(),e);
-    }
-
-    @ExceptionHandler(value = HystrixRuntimeException.class)
-    public ResponseEntity<Object> handleHystrixRuntimeException(HttpServletRequest request, HystrixRuntimeException e) {
-        //Hystrix Command 运行报错
-        logger.error("Hystrix Command 运行报错: " + e.getMessage(), e);
-        HttpStatus errorCode = HttpStatus.INTERNAL_ERROR;
-        return createResponseEntity(errorCode, request.getRequestURI(), e.getMessage(),e);
-    }
+//    @ExceptionHandler(value = HystrixTimeoutException.class)
+//    public ResponseEntity<Object> handleHystrixTimeoutException(HttpServletRequest request, HystrixTimeoutException e) {
+//        //服务超时
+//        logger.error(e.getMessage(), e);
+//        CustomHttpStatus errorCode = CustomHttpStatus.INTERNAL_ERROR;
+//        return createResponseEntity(errorCode, request.getRequestURI(), e.getMessage(),e);
+//    }
+//
+//    @ExceptionHandler(value = HystrixRuntimeException.class)
+//    public ResponseEntity<Object> handleHystrixRuntimeException(HttpServletRequest request, HystrixRuntimeException e) {
+//        //Hystrix Command 运行报错
+//        logger.error("Hystrix Command 运行报错: " + e.getMessage(), e);
+//        CustomHttpStatus errorCode = CustomHttpStatus.INTERNAL_ERROR;
+//        return createResponseEntity(errorCode, request.getRequestURI(), e.getMessage(),e);
+//    }
 
 
 
@@ -101,14 +97,23 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Object> handleException(HttpServletRequest request, Exception e) {
+        Throwable resultEx = ExceptionUtils.getCause(e);
+        if(resultEx instanceof BaseException){
+            return handleAppBusinessException(request, (BaseException) resultEx);
+        }
+//        else if(resultEx instanceof HystrixTimeoutException){
+//            return handleHystrixTimeoutException(request, (HystrixTimeoutException) resultEx);
+//        }else if(resultEx instanceof HystrixRuntimeException){
+//            return handleHystrixRuntimeException(request, (HystrixRuntimeException) resultEx);
+//        }
         //服务器未知错误
-        logger.error("服务器发生错误: " + e.getMessage(), e);
-        HttpStatus errorCode = HttpStatus.INTERNAL_ERROR;
-        return createResponseEntity(errorCode, request.getRequestURI(), errorCode.getMessage(),e);
+        logger.error("服务器发生错误: " + resultEx.getMessage(), resultEx);
+        CustomHttpStatus errorCode = CustomHttpStatus.INTERNAL_ERROR;
+        return createResponseEntity(errorCode, request.getRequestURI(), errorCode.getMessage(),resultEx);
 
     }
 
-    private ResponseEntity<Object> createResponseEntity(HttpStatus errorCode, String requestUri,String message, Throwable throwable) {
+    private ResponseEntity<Object> createResponseEntity(CustomHttpStatus errorCode, String requestUri, String message, Throwable throwable) {
         //TODO 获取基本的code
         String sysCode = "default";
         ErrorMessage error= buildErrorMessage(applicationConstant,requestUri,errorCode.getCode(),sysCode,message,throwable,null);
@@ -142,7 +147,7 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
             //TODO 获取机器ID？
             String systemId = applicationConstant.getApplicationName();
             if(applicationConstant.isOutputExceptionStackTrace()){
-                stackTrace = ExceptionUtils.getStackTrace(throwable);
+                stackTrace = org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(throwable);
             }
             exceptionDetail = new ErrorMessage.ExceptionDetail(systemId,requestUri,stackTrace);
             if(exceptionStack == null){

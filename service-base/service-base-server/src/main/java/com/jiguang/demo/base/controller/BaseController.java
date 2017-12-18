@@ -2,6 +2,8 @@ package com.jiguang.demo.base.controller;
 
 import com.jiguang.demo.base.provider.BaseProvider;
 import com.jiguang.demo.base.service.DbRouteService;
+import com.jiguang.demo.exceptions.AppUserException;
+import com.netflix.hystrix.exception.HystrixTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,9 @@ public class BaseController implements BaseProvider {
     public String getDsByUserId(Long userId){
         logger.debug("getDsByUserId:{}",sysId);
         if(userId != null && userId == 250){
-            throw new RuntimeException("抛出异常");
+            throw new RuntimeException(new HystrixTimeoutException());
+//            throw new RuntimeException(new AppUserException("error","NFC0","400"));
+//            throw new AppUserException("error","NFC0","400");
         }
         String ds = dbRouteService.findByUserId(userId).getDs();
         return ds;

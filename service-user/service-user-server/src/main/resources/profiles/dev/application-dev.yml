@@ -67,3 +67,6 @@ sharding:
             slave-data-source-names: druid_demo_1_slave,druid_demo_1_slave_2
 
 
+jiguang:
+  config:
+    outputExceptionStackTrace: true

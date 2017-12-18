@@ -4,7 +4,7 @@ package com.jiguang.demo.constants;
  * @author liups
  * @create 2017/12/14
  */
-public enum HttpStatus {
+public enum CustomHttpStatus {
     SUCCESS(200,"请求成功"),
     BAD_REQUEST(400, "请求的参数个数或格式不符合要求"),
     INVALID_ARGUMENT(400, "请求的参数不正确"),
@@ -16,19 +16,19 @@ public enum HttpStatus {
     CONFLICT(409, "资源冲突"),
     UNSUPPORTED_MEDIA_TYPE(415, "不支持的Media Type"),
     INTERNAL_ERROR(500, "服务器内部错误"),
-    SERVICE_UNAVAILABLE(503, "服务不可用"),
+    SERVICE_UNAVAILABLE(503, "服务不可用,服务器维护或者过载，服务器当前无法处理请求"),
     GATEWAY_TIMEOUT(504, "请求服务超时");
 
     private int status;
     private String message;
 
-    HttpStatus(int status,String message) {
+    CustomHttpStatus(int status, String message) {
         this.status = status;
         this.message = message;
     }
 
-    public static HttpStatus fromHttpStatus(int httpStatus) {
-        for(HttpStatus errorCode : values()) {
+    public static CustomHttpStatus fromHttpStatus(int httpStatus) {
+        for(CustomHttpStatus errorCode : values()) {
             if(errorCode.getStatus() == httpStatus) {
                 return errorCode;
             }

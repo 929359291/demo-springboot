@@ -1,6 +1,6 @@
 package com.jiguang.demo.helper;
 
-import com.jiguang.demo.constants.HttpStatus;
+import com.jiguang.demo.constants.CustomHttpStatus;
 import com.jiguang.demo.exceptions.BaseException;
 import com.jiguang.demo.exceptions.AppErrorException;
 import com.jiguang.demo.exceptions.AppFinalException;
@@ -37,7 +37,7 @@ public class AppMessageHelper {
             default:
                 //TODO 默认异常
                 appMessage = getDefaultAppMessage();
-                exception = new BaseException(appMessage.getMsgTxt(),appMessage.getSysCode(),appMessage.getMsgId()+"", HttpStatus.SUCCESS.getStatus());
+                exception = new BaseException(appMessage.getMsgTxt(),appMessage.getSysCode(),appMessage.getMsgId()+"", CustomHttpStatus.SUCCESS.getStatus());
         }
         return exception;
     }

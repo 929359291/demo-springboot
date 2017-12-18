@@ -16,3 +16,6 @@ spring:
     username: root
     password: root
 
+jiguang:
+  config:
+    outputExceptionStackTrace: true

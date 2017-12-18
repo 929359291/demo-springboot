@@ -1,7 +1,7 @@
 package com.jiguang.demo.controller;
 
 import com.jiguang.demo.constants.ApplicationConstant;
-import com.jiguang.demo.constants.HttpStatus;
+import com.jiguang.demo.constants.CustomHttpStatus;
 import com.jiguang.demo.messages.ErrorMessage;
 import com.jiguang.demo.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class BaseExceptionController extends AbstractErrorController {
     public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
 
         org.springframework.http.HttpStatus status = getStatus(request);
-        HttpStatus errorCode = HttpStatus.fromHttpStatus(status.value());
+        CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
         ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,null, status.getReasonPhrase());
         ModelAndView mav = new ModelAndView();
         MappingJackson2JsonView view = new MappingJackson2JsonView(JsonUtils.getObjectMapper());
@@ -68,7 +68,7 @@ public class BaseExceptionController extends AbstractErrorController {
     @ResponseBody
     public ResponseEntity<String> error(HttpServletRequest request) {
         org.springframework.http.HttpStatus status = getStatus(request);
-        HttpStatus errorCode = HttpStatus.fromHttpStatus(status.value());
+        CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
         ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, null, status.getReasonPhrase());
         return new ResponseEntity<>(JsonUtils.object2Json(error), status);
     }

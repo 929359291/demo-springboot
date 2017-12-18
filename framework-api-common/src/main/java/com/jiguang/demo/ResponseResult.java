@@ -1,6 +1,6 @@
 package com.jiguang.demo;
 
-import com.jiguang.demo.constants.HttpStatus;
+import com.jiguang.demo.constants.CustomHttpStatus;
 import com.jiguang.demo.messages.ErrorMessage;
 
 import java.io.Serializable;
@@ -33,7 +33,7 @@ public class ResponseResult<T> implements Serializable {
 
     public static<T> ResponseResult buildResult(T result) {
         ResponseResult responseResult = new ResponseResult();
-        responseResult.setCode(HttpStatus.SUCCESS.getCode());
+        responseResult.setCode(CustomHttpStatus.SUCCESS.getCode());
         responseResult.setResult(result);
         return responseResult;
     }

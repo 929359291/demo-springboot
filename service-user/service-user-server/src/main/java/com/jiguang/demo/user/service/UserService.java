@@ -19,6 +19,7 @@ public class UserService {
 
     @Transactional( propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
     public void insert(Long id, String name, String password) {
+        //TODO 多数据源的事务处理，sharding的柔性事务？
         userRepository.insert(new User(id,name,password));
     }
 
