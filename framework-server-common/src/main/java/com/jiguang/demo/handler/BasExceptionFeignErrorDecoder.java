@@ -34,7 +34,7 @@ public class BasExceptionFeignErrorDecoder implements ErrorDecoder {
             ErrorMessage error = responseResult.getError();
             BaseException exception = new BaseException(error.getMessage(), error.getSysCode(), error.getCode(), status);
             exception.setExceptionStack(error.getExceptionStack());
-            return new HystrixBadRequestException("业务异常",exception);
+            return new HystrixBadRequestException(error.getMessage(),exception);
         } catch (IOException e) {
             logger.error("Feign 错误转换出错：{}",e.getMessage());
             return feign.FeignException.errorStatus(methodKey, response);

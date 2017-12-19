@@ -8,6 +8,7 @@ import com.jiguang.demo.exceptions.BaseException;
 import com.jiguang.demo.messages.ErrorMessage;
 import com.jiguang.demo.utils.JsonUtils;
 import com.jiguang.demo.utils.ExceptionUtils;
+import com.jiguang.demo.utils.SystemPropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,9 +98,9 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Object> handleException(HttpServletRequest request, Exception e) {
-        Throwable resultEx = ExceptionUtils.getCause(e);
-        if(resultEx instanceof BaseException){
-            return handleAppBusinessException(request, (BaseException) resultEx);
+        BaseException resultEx = ExceptionUtils.getCauseByType(e,BaseException.class);
+        if(resultEx != null){
+            return handleAppBusinessException(request,resultEx);
         }
 //        else if(resultEx instanceof HystrixTimeoutException){
 //            return handleHystrixTimeoutException(request, (HystrixTimeoutException) resultEx);
@@ -107,9 +108,9 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 //            return handleHystrixRuntimeException(request, (HystrixRuntimeException) resultEx);
 //        }
         //服务器未知错误
-        logger.error("服务器发生错误: " + resultEx.getMessage(), resultEx);
+        logger.error("服务器发生错误: " + e.getMessage(), e);
         CustomHttpStatus errorCode = CustomHttpStatus.INTERNAL_ERROR;
-        return createResponseEntity(errorCode, request.getRequestURI(), errorCode.getMessage(),resultEx);
+        return createResponseEntity(errorCode, request.getRequestURI(), errorCode.getMessage(),e);
 
     }
 
@@ -147,7 +148,7 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
             }
             ErrorMessage.ExceptionDetail  exceptionDetail;
             //TODO 获取机器ID？
-            String systemId = applicationConstant.getApplicationName();
+            String systemId = applicationConstant.getApplicationName() + ":" + SystemPropertiesUtils.getHostName() + ":" + SystemPropertiesUtils.getHostIp();
             String stackTrace = null;
             //只有刚抛出的微服务才记录异常详细堆栈
             if(applicationConstant.isOutputExceptionStackTrace() && exceptionStack.empty()){
