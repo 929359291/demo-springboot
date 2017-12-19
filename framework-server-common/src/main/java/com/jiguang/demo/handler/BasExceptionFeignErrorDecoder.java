@@ -32,7 +32,7 @@ public class BasExceptionFeignErrorDecoder implements ErrorDecoder {
                 return feign.FeignException.errorStatus(methodKey, response);
             }
             ErrorMessage error = responseResult.getError();
-            BaseException exception = new BaseException(error.getMessage(), error.getSysCode(), error.getCode(), status);
+            BaseException exception = new BaseException(error.getSysCode(),error.getCode(),error.getMsgTxt(),error.getServiceType(),error.getMessage());
             exception.setExceptionStack(error.getExceptionStack());
             return new HystrixBadRequestException(error.getMessage(),exception);
         } catch (IOException e) {

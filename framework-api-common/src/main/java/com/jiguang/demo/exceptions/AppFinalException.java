@@ -1,6 +1,7 @@
 package com.jiguang.demo.exceptions;
 
 import com.jiguang.demo.constants.CustomHttpStatus;
+import com.jiguang.demo.messages.AppMessageServiceType;
 
 /**
  * 数据库中表现为F：Final 代表系统奔溃级别，一般为JVM内存溢出或底层的错误（这种能处理吗？）
@@ -9,15 +10,11 @@ import com.jiguang.demo.constants.CustomHttpStatus;
  */
 public class AppFinalException extends BaseException {
 
-    public AppFinalException(String message) {
-        super(message);
+    public AppFinalException(String sysCode, String code, String msgTxt, String message) {
+        super(sysCode, code, msgTxt, AppMessageServiceType.F.name(), CustomHttpStatus.SERVICE_UNAVAILABLE.getStatus(), message);
     }
 
-    public AppFinalException(String message, String sysCode, String code) {
-        this(message, sysCode, code, CustomHttpStatus.SERVICE_UNAVAILABLE.getStatus());
-    }
-
-    public AppFinalException(String message, String sysCode, String code, int httpStatus) {
-        super(message, sysCode, code, httpStatus);
+    public AppFinalException(String sysCode, String code, String msgTxt, String message, Throwable cause) {
+        super(sysCode, code, msgTxt, AppMessageServiceType.F.name(), CustomHttpStatus.SERVICE_UNAVAILABLE.getStatus(), message, cause);
     }
 }

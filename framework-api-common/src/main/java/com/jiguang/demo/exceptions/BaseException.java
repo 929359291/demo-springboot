@@ -1,5 +1,6 @@
 package com.jiguang.demo.exceptions;
 
+import com.jiguang.demo.constants.CustomHttpStatus;
 import com.jiguang.demo.messages.ErrorMessage;
 
 import java.util.Stack;
@@ -10,9 +11,10 @@ import java.util.Stack;
  * @create 2017/12/12
  */
 public class BaseException extends RuntimeException {
-
-    private String sysCode;
     private String code;
+    private String sysCode;
+    private String msgTxt;
+    private String serviceType;
     private int httpStatus;
 
     /**
@@ -20,28 +22,26 @@ public class BaseException extends RuntimeException {
      */
     private Stack<ErrorMessage.ExceptionDetail> exceptionStack;
 
-    public BaseException(String message, String sysCode, String code, int httpStatus) {
+    public BaseException(String sysCode, String code,String msgTxt,String serviceType,String message) {
+        this(sysCode, code, msgTxt, serviceType, CustomHttpStatus.BAD_REQUEST.getStatus(),message);
+    }
+
+    protected BaseException( String sysCode, String code, String msgTxt,String serviceType,int httpStatus,String message) {
         super(message);
         this.sysCode = sysCode;
         this.code = code;
+        this.msgTxt = msgTxt;
+        this.serviceType = serviceType;
         this.httpStatus = httpStatus;
     }
 
-
-    public BaseException(String message) {
-        super(message);
-    }
-
-    public BaseException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public BaseException(Throwable cause) {
-        super(cause);
-    }
-
-    protected BaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    protected BaseException(String sysCode, String code, String msgTxt,String serviceType,int httpStatus,String message, Throwable cause) {
+        super(message,cause);
+        this.sysCode = sysCode;
+        this.code = code;
+        this.msgTxt = msgTxt;
+        this.serviceType = serviceType;
+        this.httpStatus = httpStatus;
     }
 
     public String getSysCode() {
@@ -54,6 +54,14 @@ public class BaseException extends RuntimeException {
 
     public int getHttpStatus() {
         return httpStatus;
+    }
+
+    public String getMsgTxt() {
+        return msgTxt;
+    }
+
+    public String getServiceType() {
+        return serviceType;
     }
 
     public Stack<ErrorMessage.ExceptionDetail> getExceptionStack() {

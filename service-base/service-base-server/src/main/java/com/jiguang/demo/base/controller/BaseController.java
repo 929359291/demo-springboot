@@ -31,8 +31,8 @@ public class BaseController implements BaseProvider {
     public String getDsByUserId(Long userId){
         logger.debug("getDsByUserId:{}",sysId);
         if(userId != null && userId == 250){
-            throw new RuntimeException(new HystrixTimeoutException());
-//            throw new RuntimeException(new AppUserException("error","NFC0","400"));
+//            throw new RuntimeException(new HystrixTimeoutException());
+            throw new RuntimeException(new AppUserException("error","NFC0","error","error"));
 //            throw new AppUserException("error","NFC0","400");
         }
         String ds = dbRouteService.findByUserId(userId).getDs();

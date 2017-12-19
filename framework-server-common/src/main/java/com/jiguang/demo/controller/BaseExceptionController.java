@@ -2,6 +2,7 @@ package com.jiguang.demo.controller;
 
 import com.jiguang.demo.constants.ApplicationConstant;
 import com.jiguang.demo.constants.CustomHttpStatus;
+import com.jiguang.demo.messages.AppMessageServiceType;
 import com.jiguang.demo.messages.ErrorMessage;
 import com.jiguang.demo.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import java.util.List;
 public class BaseExceptionController extends AbstractErrorController {
 
     //TODO
-    private String sysCode = "default";
+    private String sysCode = "common";
 
     private final ErrorProperties errorProperties;
 
@@ -54,7 +55,7 @@ public class BaseExceptionController extends AbstractErrorController {
 
         org.springframework.http.HttpStatus status = getStatus(request);
         CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,null, status.getReasonPhrase());
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,status.getReasonPhrase(), AppMessageServiceType.U.name(),status.getReasonPhrase(),null);
         ModelAndView mav = new ModelAndView();
         MappingJackson2JsonView view = new MappingJackson2JsonView(JsonUtils.getObjectMapper());
         view.setAttributesMap(JsonUtils.object2Map(error));
@@ -69,7 +70,7 @@ public class BaseExceptionController extends AbstractErrorController {
     public ResponseEntity<String> error(HttpServletRequest request) {
         org.springframework.http.HttpStatus status = getStatus(request);
         CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode, null, status.getReasonPhrase());
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,status.getReasonPhrase(), AppMessageServiceType.U.name(),status.getReasonPhrase(),null);
         return new ResponseEntity<>(JsonUtils.object2Json(error), status);
     }
 

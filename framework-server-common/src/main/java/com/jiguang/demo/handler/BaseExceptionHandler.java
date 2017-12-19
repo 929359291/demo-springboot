@@ -5,9 +5,10 @@ import com.jiguang.demo.ResponseResult;
 import com.jiguang.demo.constants.ApplicationConstant;
 import com.jiguang.demo.constants.CustomHttpStatus;
 import com.jiguang.demo.exceptions.BaseException;
+import com.jiguang.demo.messages.AppMessageServiceType;
 import com.jiguang.demo.messages.ErrorMessage;
-import com.jiguang.demo.utils.JsonUtils;
 import com.jiguang.demo.utils.ExceptionUtils;
+import com.jiguang.demo.utils.JsonUtils;
 import com.jiguang.demo.utils.SystemPropertiesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,20 +112,21 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
         logger.error("服务器发生错误: " + e.getMessage(), e);
         CustomHttpStatus errorCode = CustomHttpStatus.INTERNAL_ERROR;
         return createResponseEntity(errorCode, request.getRequestURI(), errorCode.getMessage(),e);
-
     }
 
     private ResponseEntity<Object> createResponseEntity(CustomHttpStatus errorCode, String requestUri, String message, Throwable throwable) {
         //TODO 获取基本的code
-        String sysCode = "default";
-        ErrorMessage error= buildErrorMessage(applicationConstant,requestUri,errorCode.getCode(),sysCode,message,throwable,null);
+        String sysCode = "common";
+        String msgTxt = "异常";
+        String serviceType = AppMessageServiceType.E.name();
+        ErrorMessage error= buildErrorMessage(applicationConstant,requestUri,errorCode.getCode(),sysCode,msgTxt,serviceType,message,throwable,null);
         String json = JsonUtils.object2Json(ResponseResult.buildError(error));
         return ResponseEntity.status(org.springframework.http.HttpStatus.valueOf(errorCode.getStatus())).body(json);
     }
 
     private ResponseEntity<Object> createResponseEntity(String code, String sysCode,int httpStatus, String requestUri,String message, BaseException ex) {
         Stack<ErrorMessage.ExceptionDetail> exceptionStack = ex.getExceptionStack();
-        ErrorMessage error= buildErrorMessage(applicationConstant,requestUri,code,sysCode,message,ex,exceptionStack);
+        ErrorMessage error= buildErrorMessage(applicationConstant,requestUri,code,sysCode,ex.getMsgTxt(),ex.getServiceType(),message,ex,exceptionStack);
         String json = JsonUtils.object2Json(ResponseResult.buildError(error));
         return ResponseEntity.status(org.springframework.http.HttpStatus.valueOf(httpStatus)).body(json);
     }
@@ -141,7 +143,7 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     public static ErrorMessage buildErrorMessage(ApplicationConstant applicationConstant,String requestUri,String code,String sysCode,
-                                                 String message,Throwable throwable,Stack<ErrorMessage.ExceptionDetail> exceptionStack){
+                                                 String msgTxt,String serviceType, String message,Throwable throwable,Stack<ErrorMessage.ExceptionDetail> exceptionStack){
         if(applicationConstant.isOutputExceptionStack()){
             if(exceptionStack == null){
                 exceptionStack = new Stack();
@@ -159,7 +161,7 @@ public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
                 exceptionStack.push(exceptionDetail);
             }
         }
-        return new ErrorMessage(code, sysCode, exceptionStack, message);
+        return new ErrorMessage(code, sysCode,msgTxt,serviceType, message, exceptionStack);
     }
 
 }

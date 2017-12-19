@@ -14,7 +14,7 @@ import com.jiguang.demo.messages.AppMessageServiceType;
  */
 public class AppMessageHelper {
 
-    public static BaseException getExceptionByMsgId(int msgId){
+    public static BaseException getExceptionByMsgId(int msgId,String message){
         BaseException exception;
         AppMessage appMessage;
         if(msgId == 0){
@@ -26,18 +26,18 @@ public class AppMessageHelper {
         AppMessageServiceType serviceType = AppMessageServiceType.valueOf(appMessage.getServiceType());
         switch (serviceType){
             case F:
-                exception = new AppFinalException(appMessage.getMsgTxt(),appMessage.getSysCode(),appMessage.getMsgId()+"");
+                exception = new AppFinalException(appMessage.getSysCode(),appMessage.getMsgId()+"",appMessage.getMsgTxt(),message);
                 break;
             case E:
-                exception = new AppErrorException(appMessage.getMsgTxt(),appMessage.getSysCode(),appMessage.getMsgId()+"");
+                exception = new AppErrorException(appMessage.getSysCode(),appMessage.getMsgId()+"",appMessage.getMsgTxt(),message);
                 break;
             case U:
-                exception = new AppUserException(appMessage.getMsgTxt(),appMessage.getSysCode(),appMessage.getMsgId()+"");
+                exception = new AppUserException(appMessage.getSysCode(),appMessage.getMsgId()+"",appMessage.getMsgTxt(),message);
                 break;
             default:
                 //TODO 默认异常
                 appMessage = getDefaultAppMessage();
-                exception = new BaseException(appMessage.getMsgTxt(),appMessage.getSysCode(),appMessage.getMsgId()+"", CustomHttpStatus.SUCCESS.getStatus());
+                exception = new BaseException(appMessage.getSysCode(),appMessage.getMsgId()+"", appMessage.getMsgTxt(),appMessage.getServiceType(),message);
         }
         return exception;
     }
