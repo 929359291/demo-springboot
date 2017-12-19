@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>project-parent</artifactId>
-        <groupId>com.jiguang</groupId>
+        <groupId>cn.mengtianyou</groupId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../project-parent</relativePath>
     </parent>
@@ -85,7 +85,7 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jiguang</groupId>
+            <groupId>cn.mengtianyou</groupId>
             <artifactId>framework-api-common</artifactId>
             <version>${framework-api-common.version}</version>
         </dependency>

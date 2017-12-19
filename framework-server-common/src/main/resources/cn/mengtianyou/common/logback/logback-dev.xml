@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 继承模板配置 -->
+    <include resource="cn/mengtianyou/common/logback/base/logback-common.xml" />
+    <include resource="cn/mengtianyou/common/logback/base/logback-console-appender.xml" />
+    
+    <root level="info">
+        <appender-ref ref="ASYNC_STDOUT" />
+    </root>
+</included>

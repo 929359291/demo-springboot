@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>service-base</artifactId>
-        <groupId>com.jiguang</groupId>
+        <groupId>cn.mengtianyou</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +14,7 @@
     <properties>
         <service-base-api.version>${parent.version}</service-base-api.version>
         <framework-server-common.version>${parent.version}</framework-server-common.version>
-        <project.mainClass>com.jiguang.demo.base.BootStrap</project.mainClass>
+        <project.mainClass>cn.mengtianyou.base.BootStrap</project.mainClass>
     </properties>
 
     <dependencies>
@@ -34,12 +34,12 @@
             <version>1.1.5</version>
         </dependency>
         <dependency>
-            <groupId>com.jiguang</groupId>
+            <groupId>cn.mengtianyou</groupId>
             <artifactId>service-base-api</artifactId>
             <version>${service-base-api.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.jiguang</groupId>
+            <groupId>cn.mengtianyou</groupId>
             <artifactId>framework-server-common</artifactId>
             <version>${framework-server-common.version}</version>
         </dependency>

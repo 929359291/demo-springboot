@@ -2,6 +2,6 @@
 <configuration debug="true">
 
     <logger name="com.jiguang.demo.user" level="DEBUG" />
-    <include resource="com/jiguang/demo/support/logback/jiguang-logback-dev.xml" />
+    <include resource="cn/mengtianyou/common/logback/logback-dev.xml" />
 
 </configuration>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 继承模板配置 -->
+    <include resource="cn/mengtianyou/common/logback/base/logback-common.xml" />
+    <include resource="cn/mengtianyou/common/logback/base/logback-console-appender.xml" />
+    <include resource="cn/mengtianyou/common/logback/base/logback-info-appender.xml" />
+    <include resource="cn/mengtianyou/common/logback/base/logback-error-appender.xml" />
+    <!--<include resource="com/jiguang/demo/support/logback/base/jiguang-logback-alarm-appender.xml" />-->
+    <include resource="cn/mengtianyou/common/logback/base/logback-elk-appender.xml" />
+
+    <logger name="com.alibaba.druid.filter.stat.StatFilter" additivity="false">
+         <appender-ref ref="ASYNC_STDOUT" />
+         <appender-ref ref="ASYNC_INFO" />
+         <appender-ref ref="ASYNC_ERROR" />
+    </logger>
+    <root level="info">
+        <appender-ref ref="ASYNC_STDOUT" />
+        <appender-ref ref="ASYNC_INFO" />
+        <appender-ref ref="ASYNC_ERROR" />
+        <appender-ref ref="ASYNC_ELK" />
+    </root>
+</included>
