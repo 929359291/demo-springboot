@@ -1,9 +1,10 @@
-package cn.mengtianyou.user.sharding;
+package cn.mengtianyou.common.aspect;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
+ * 用于选择数据库的本地线程变量，会传递到别的微服务，由sharding使用
  * @author liups
  * @create 2017/12/4
  */

@@ -1,6 +1,6 @@
 package cn.mengtianyou.user.sharding.algorithm;
 
-import cn.mengtianyou.user.sharding.SelectedDatabase;
+import cn.mengtianyou.common.aspect.SelectedDatabase;
 import io.shardingjdbc.core.api.algorithm.sharding.ShardingValue;
 import io.shardingjdbc.core.routing.strategy.ShardingAlgorithm;
 import org.springframework.util.CollectionUtils;

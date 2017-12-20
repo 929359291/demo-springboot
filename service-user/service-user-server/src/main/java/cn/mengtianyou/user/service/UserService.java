@@ -1,7 +1,7 @@
 package cn.mengtianyou.user.service;
 
-import cn.mengtianyou.user.entity.User;
 import cn.mengtianyou.user.dao.UserDao;
+import cn.mengtianyou.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,7 +17,8 @@ public class UserService {
     @Autowired
     UserDao userRepository;
 
-    @Transactional( propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
+
+    @Transactional( propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
     public void insert(Long id, String name, String password) {
         //TODO 多数据源的事务处理，sharding的柔性事务？
         userRepository.insert(new User(id,name,password));

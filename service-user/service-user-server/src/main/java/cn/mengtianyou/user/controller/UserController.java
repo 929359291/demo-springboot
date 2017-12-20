@@ -7,7 +7,7 @@ import cn.mengtianyou.user.helper.UserIdHelper;
 import cn.mengtianyou.user.provider.UserProvider;
 import cn.mengtianyou.user.service.OrderService;
 import cn.mengtianyou.user.service.UserService;
-import cn.mengtianyou.user.sharding.SelectedDatabase;
+import cn.mengtianyou.common.aspect.SelectedDatabase;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
