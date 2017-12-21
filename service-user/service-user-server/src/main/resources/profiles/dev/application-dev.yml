@@ -7,9 +7,9 @@ spring:
   zipkin:
     base-url: http://localhost:8002
 
-#mybatis:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 sharding:

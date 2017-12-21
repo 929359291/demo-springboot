@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 /**
  * @author liups
  * @create 2017/11/27
@@ -29,7 +31,7 @@ public class BaseController implements BaseProvider {
     @Override
     public String getDsByUserId(Long userId){
         logger.debug("getDsByUserId:{}",sysId);
-        if(userId != null && userId == 250){
+        if(Objects.equals(userId,250L)){
 //            throw new RuntimeException(new HystrixTimeoutException());
             throw new RuntimeException(new AppUserException("error","NFC0","error","error"));
 //            throw new AppUserException("error","NFC0","400");

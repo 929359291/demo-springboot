@@ -63,10 +63,10 @@ public class UserController implements UserProvider {
     public String login(HttpServletRequest request, String name){
         logger.debug("login:{}" , name);
 
-        SelectedDatabase.newInstance(new ArrayList<String>(){{
-            add("druid_demo_2");
-            add("druid_demo_1");
-        }});
+//        SelectedDatabase.newInstance(new ArrayList<String>(){{
+//            add("druid_demo_2");
+//            add("druid_demo_1");
+//        }});
         User user = userService.findByName(name);
         if(user == null){
             return "null";
