@@ -1,5 +1,7 @@
 package cn.mengtianyou.user.controller;
 
+import cn.mengtianyou.common.aspect.SelectedDatabase;
+import cn.mengtianyou.common.controller.BaseController;
 import cn.mengtianyou.user.consumer.BaseFeignConsumer;
 import cn.mengtianyou.user.entity.Order;
 import cn.mengtianyou.user.entity.User;
@@ -7,7 +9,6 @@ import cn.mengtianyou.user.helper.UserIdHelper;
 import cn.mengtianyou.user.provider.UserProvider;
 import cn.mengtianyou.user.service.OrderService;
 import cn.mengtianyou.user.service.UserService;
-import cn.mengtianyou.common.aspect.SelectedDatabase;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +17,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-
 /**
  * @author liups
  * @create 2017/11/27
  */
 @RestController
-public class UserController implements UserProvider {
+public class UserController extends BaseController implements UserProvider {
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
@@ -45,7 +43,7 @@ public class UserController implements UserProvider {
     }
 
     @Override
-    public String getUserName(HttpServletRequest request, Long userId, @RequestParam(required = false) String ds){
+    public String getUserName(Long userId, @RequestParam(required = false) String ds){
         if(StringUtils.isEmpty(ds)){
             ds = getDsByUserId(userId);
         }
@@ -60,9 +58,8 @@ public class UserController implements UserProvider {
     }
 
     @Override
-    public String login(HttpServletRequest request, String name){
+    public String login(String name){
         logger.debug("login:{}" , name);
-
 //        SelectedDatabase.newInstance(new ArrayList<String>(){{
 //            add("druid_demo_2");
 //            add("druid_demo_1");

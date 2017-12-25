@@ -18,6 +18,8 @@
         <module>service-user</module>
         <module>turbine</module>
         <module>zipkin</module>
+        <module>rest-demo</module>
+        <module>auth-server</module>
     </modules>
 
 </project>

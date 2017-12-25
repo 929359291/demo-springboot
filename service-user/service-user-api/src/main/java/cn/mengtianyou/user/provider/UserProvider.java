@@ -3,8 +3,6 @@ package cn.mengtianyou.user.provider;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author liups
  * @create 2017/12/7
@@ -16,10 +14,10 @@ public interface UserProvider {
     String insertUser(Long id,String name,String password);
 
     @RequestMapping("/ds_route/find_user")
-    String getUserName(HttpServletRequest request, Long userId, @RequestParam(required = false) String ds);
+    String getUserName(Long userId, @RequestParam(required = false) String ds);
 
     @RequestMapping("/login")
-    String login(HttpServletRequest request, String name);
+    String login(String name);
 
 
     @RequestMapping("/ds_route/insert_order")
