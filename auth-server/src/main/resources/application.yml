@@ -1,16 +1,17 @@
 server:
   port: 8081
   context-path: /auth
-  session:
-    cookie:
-      name: USESSION
+#  session:
+#    cookie:
+#      name: USESSION
 security:
   basic:
     enabled: false
-
 spring:
   application:
     name: auth-server
+  session:
+    store-type: redis
 
 eureka:
   client:

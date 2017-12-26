@@ -1,5 +1,6 @@
 package cn.mengtianyou.common.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +15,19 @@ import javax.servlet.http.HttpSession;
 public class BaseController {
     protected HttpServletRequest request;
     protected HttpServletResponse response;
-    protected HttpSession session;
 
     @ModelAttribute
     public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
         this.request = request;
         this.response = response;
-        this.session = request.getSession();
     }
+
+    public HttpServletRequest getRequest() {
+        return this.request;
+    }
+
+    public HttpServletResponse getResponse() {
+        return this.response;
+    }
+
 }

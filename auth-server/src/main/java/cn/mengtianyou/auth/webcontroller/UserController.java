@@ -1,4 +1,4 @@
-package cn.mengtianyou.auth.controller;
+package cn.mengtianyou.auth.webcontroller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

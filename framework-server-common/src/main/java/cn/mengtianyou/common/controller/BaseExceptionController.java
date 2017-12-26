@@ -55,7 +55,7 @@ public class BaseExceptionController extends AbstractErrorController {
 
         org.springframework.http.HttpStatus status = getStatus(request);
         CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,status.getReasonPhrase(), AppMessageServiceType.U.name(),status.getReasonPhrase(),null);
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,errorCode.getMessage(), AppMessageServiceType.U.name(),status.getReasonPhrase(),null);
         ModelAndView mav = new ModelAndView();
         MappingJackson2JsonView view = new MappingJackson2JsonView(JsonUtils.getObjectMapper());
         view.setAttributesMap(JsonUtils.object2Map(error));
@@ -70,7 +70,7 @@ public class BaseExceptionController extends AbstractErrorController {
     public ResponseEntity<String> error(HttpServletRequest request) {
         org.springframework.http.HttpStatus status = getStatus(request);
         CustomHttpStatus errorCode = CustomHttpStatus.fromHttpStatus(status.value());
-        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,status.getReasonPhrase(), AppMessageServiceType.U.name(),status.getReasonPhrase(),null);
+        ErrorMessage error = new ErrorMessage(errorCode.getCode(),sysCode,errorCode.getMessage(), AppMessageServiceType.U.name(),status.getReasonPhrase(),null);
         return new ResponseEntity<>(JsonUtils.object2Json(error), status);
     }
 

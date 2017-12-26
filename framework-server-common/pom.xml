@@ -89,6 +89,10 @@
             <artifactId>framework-api-common</artifactId>
             <version>${framework-api-common.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
 
     </dependencies>
 

@@ -10,12 +10,8 @@ import org.springframework.web.context.request.RequestContextListener;
 @EnableFeignClients
 public class UiApplication {
 
-    @Bean
-    public RequestContextListener requestContextListener() {
-        return new RequestContextListener();
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(UiApplication.class, args);
     }
+
 }

@@ -1,10 +1,12 @@
 server:
-    port: 8082
-    context-path: /ui
-    session:
-      cookie:
-        name: UISESSION
+  port: 8082
+  context-path: /ui
+#  session:
+#    cookie:
+#      name: UISESSION
+
 security:
+  sessions: NEVER
   basic:
     enabled: false
   oauth2:
@@ -20,6 +22,8 @@ spring:
     cache: false
   application:
     name: rest-demo
+  session:
+    store-type: redis
 eureka:
   client:
     serviceUrl:
