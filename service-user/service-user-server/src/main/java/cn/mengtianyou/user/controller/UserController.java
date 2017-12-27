@@ -38,7 +38,7 @@ public class UserController extends BaseController implements UserProvider {
     public String insertUser(Long id, String name, String password){
         baseFeignConsumer.insertUserId(id, UserIdHelper.calDataSourceNameByUserName(id));
         SelectedDatabase.newInstance(getDsByUserId(id));
-        userService.insert(id,name + id,password);
+        userService.insert(id,name,password);
         return "true";
     }
 
@@ -58,7 +58,7 @@ public class UserController extends BaseController implements UserProvider {
     }
 
     @Override
-    public String login(String name){
+    public User login(String name){
         logger.debug("login:{}" , name);
 //        SelectedDatabase.newInstance(new ArrayList<String>(){{
 //            add("druid_demo_2");
@@ -66,9 +66,9 @@ public class UserController extends BaseController implements UserProvider {
 //        }});
         User user = userService.findByName(name);
         if(user == null){
-            return "null";
+            return null;
         }else{
-            return user.getName();
+            return user;
         }
     }
 

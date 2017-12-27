@@ -1,5 +1,6 @@
 package cn.mengtianyou.user.provider;
 
+import cn.mengtianyou.user.entity.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -11,21 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserProvider {
 
     @RequestMapping("/insert_user")
-    String insertUser(Long id,String name,String password);
+    String insertUser(@RequestParam("id") Long id,@RequestParam("name") String name,@RequestParam("password") String password);
 
     @RequestMapping("/ds_route/find_user")
-    String getUserName(Long userId, @RequestParam(required = false) String ds);
+    String getUserName(@RequestParam("userId") Long userId, @RequestParam(value = "ds",required = false) String ds);
 
     @RequestMapping("/login")
-    String login(String name);
+    User login(@RequestParam("name") String name);
 
 
     @RequestMapping("/ds_route/insert_order")
-    String insertOrder(Long userId,String orderName);
+    String insertOrder(@RequestParam("userId") Long userId,@RequestParam("orderName") String orderName);
 
 
     @RequestMapping("/ds_route/find_order")
-    String findOrder(Long orderId,Long userId);
+    String findOrder(@RequestParam("orderId") Long orderId,@RequestParam("userId") Long userId);
 
 
 }

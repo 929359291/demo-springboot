@@ -6,7 +6,6 @@ server:
 #      name: UISESSION
 
 security:
-  sessions: NEVER
   basic:
     enabled: false
   oauth2:

@@ -1,0 +1,44 @@
+server:
+  port: 8183
+security:
+  basic:
+    enabled: false
+
+spring:
+  application:
+    name: portal-demo
+  session:
+    store-type: redis
+  profiles:
+    active:
+    - '@profileActive@'
+
+
+management:
+#  add-application-context-header: false
+#  security:
+#    enabled: false
+#  context-path: /spring-manager
+  port: 2${server.port}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      management.port: ${management.port}
+#      cluster: MAIN
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 30000
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE

@@ -19,25 +19,25 @@ sharding:
       druid_demo_1_master:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.20.39:3306/druid_demo_1
+        url: jdbc:mysql://192.168.20.39:3306/druid_demo_1?useUnicode=true&characterEncoding=UTF-8
         username: root
         password: root
       druid_demo_1_slave:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.20.39:3306/druid_demo_1_slave
+        url: jdbc:mysql://192.168.20.39:3306/druid_demo_1_slave?useUnicode=true&characterEncoding=UTF-8
         username: root
         password: root
       druid_demo_1_slave_2:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.20.39:3306/druid_demo_1_slave_2
+        url: jdbc:mysql://192.168.20.39:3306/druid_demo_1_slave_2?useUnicode=true&characterEncoding=UTF-8
         username: root
         password: root
       druid_demo_2:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.20.39:3306/druid_demo_2
+        url: jdbc:mysql://192.168.20.39:3306/druid_demo_2?useUnicode=true&characterEncoding=UTF-8
         username: root
         password: root
     config:

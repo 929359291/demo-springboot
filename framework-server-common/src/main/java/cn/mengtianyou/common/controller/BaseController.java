@@ -1,11 +1,9 @@
 package cn.mengtianyou.common.controller;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * 继承此controller的类可以方便地获取request或response

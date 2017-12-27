@@ -20,6 +20,7 @@
         <module>zipkin</module>
         <module>rest-demo</module>
         <module>auth-server</module>
+        <module>portal-demo</module>
     </modules>
 
 </project>

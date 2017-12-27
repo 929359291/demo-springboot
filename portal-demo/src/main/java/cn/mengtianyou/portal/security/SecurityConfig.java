@@ -1,4 +1,4 @@
-package cn.mengtianyou.auth.security;
+package cn.mengtianyou.portal.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,17 +24,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception { // @formatter:off
         http
+                .sessionManagement()
+                .sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy())
+                .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .requestMatchers().antMatchers("/login", "/oauth/authorize")
+                .authorizeRequests()
+                .antMatchers("/","/register")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .csrf().disable()
-                ;
-
+                .csrf().disable();
     }
 
     @Override

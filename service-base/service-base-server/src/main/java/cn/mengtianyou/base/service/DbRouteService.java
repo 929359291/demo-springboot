@@ -19,7 +19,7 @@ public class DbRouteService {
     @Transactional( propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
     public void insert(Long userId,String ds) {
         dbRouteRepository.insert(new DbRoute(userId,ds));
-        throw new RuntimeException();
+//        throw new RuntimeException();
     }
 
     public void delete(Long userId) {
