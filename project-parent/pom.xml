@@ -18,11 +18,43 @@
     <properties>
         <jdk.version>1.8</jdk.version>
         <project.mainClass>none</project.mainClass><!-- 此属性在这配置只是因为不想让下面的引用报错，微服务中的启动设置要单独设置 -->
+        <framework-server-common.version>${version}</framework-server-common.version>
+        <framework-api-common.version>${version}</framework-api-common.version>
+        <framework-sharding.version>${version}</framework-sharding.version>
+        <service-user-api.version>${version}</service-user-api.version>
+        <service-base-api.version>${version}</service-base-api.version>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
+            <!-- 自己的项目 -->
+            <dependency>
+                <groupId>cn.mengtianyou</groupId>
+                <artifactId>service-user-api</artifactId>
+                <version>${service-user-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.mengtianyou</groupId>
+                <artifactId>service-base-api</artifactId>
+                <version>${service-base-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.mengtianyou</groupId>
+                <artifactId>framework-server-common</artifactId>
+                <version>${framework-server-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.mengtianyou</groupId>
+                <artifactId>framework-api-common</artifactId>
+                <version>${framework-api-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.mengtianyou</groupId>
+                <artifactId>framework-sharding</artifactId>
+                <version>${framework-sharding.version}</version>
+            </dependency>
+
+            <!-- 第三方 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>

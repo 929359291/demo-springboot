@@ -52,7 +52,7 @@ sharding:
             database-strategy:
               complex:
                 sharding-columns: DB_COLUMN_NAME
-                algorithm-class-name: cn.mengtianyou.user.sharding.algorithm.CustomDsComplexKeysShardingAlgorithm
+                algorithm-class-name: cn.mengtianyou.sharding.algorithm.CustomDsComplexKeysShardingAlgorithm
 #            actual-data-nodes: druid_demo_${1..2}.user
 #            keyGeneratorColumnName: ID
         default-database-strategy:
@@ -60,7 +60,7 @@ sharding:
 #            shardingColumn: USER_ID
 #            algorithmExpression: druid_demo_${USER_ID % 2 + 1}
           hint:
-            algorithm-class-name: cn.mengtianyou.user.sharding.algorithm.CustomDsHintShardingAlgorithm
+            algorithm-class-name: cn.mengtianyou.sharding.algorithm.CustomDsHintShardingAlgorithm
         master-slave-rules:
           druid_demo_1:
             master-data-source-name: druid_demo_1_master

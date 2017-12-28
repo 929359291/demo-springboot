@@ -1,14 +1,13 @@
 package cn.mengtianyou.common.utils;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import cn.mengtianyou.common.helper.ApplicationContextHelper;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import cn.mengtianyou.common.helper.ApplicationContextHelper;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,36 +17,38 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * User: amos.zhou
- * Date: 13-12-23
- * Time: 下午12:10
- * Json工具类
+ * Json 工具类
+ * @author liups
+ * @create 2017/12/19
  */
 public class JsonUtils {
 
 //    public static final ObjectMapper OBJECT_MAPPER = createObjectMapper();
 
+//    /**
+//     * 初始化ObjectMapper
+//     * @return
+//     */
+//    private static ObjectMapper createObjectMapper() {
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+//        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//
+//        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS , false);
+//
+////        objectMapper.registerModule(new Hibernate4Module().enable(Hibernate4Module.Feature.FORCE_LAZY_LOADING));
+//        objectMapper.registerModule(new JavaTimeModule());
+//
+//        return objectMapper;
+//    }
     /**
-     * 初始化ObjectMapper
-     * @return
+     * 此类spring自动配置了
+     * {@link org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration}
      */
-    private static ObjectMapper createObjectMapper() {
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-
-        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS , false);
-
-//        objectMapper.registerModule(new Hibernate4Module().enable(Hibernate4Module.Feature.FORCE_LAZY_LOADING));
-        objectMapper.registerModule(new JavaTimeModule());
-
-        return objectMapper;
-    }
-
     public static ObjectMapper getObjectMapper(){
         //从bean中获取ObjectMapper
         return ApplicationContextHelper.context.getBean(ObjectMapper.class);

@@ -1,4 +1,4 @@
-package cn.mengtianyou.common.handler;
+package cn.mengtianyou.common.exception;
 
 import cn.mengtianyou.common.constants.CustomHttpStatus;
 import cn.mengtianyou.common.exceptions.BaseException;

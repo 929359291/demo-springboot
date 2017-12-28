@@ -1,4 +1,4 @@
-package cn.mengtianyou.user.sharding.algorithm;
+package cn.mengtianyou.sharding.algorithm;
 
 import io.shardingjdbc.core.api.algorithm.sharding.ShardingValue;
 import io.shardingjdbc.core.api.algorithm.sharding.hint.HintShardingAlgorithm;

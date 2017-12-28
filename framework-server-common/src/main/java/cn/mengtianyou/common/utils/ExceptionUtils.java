@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * 处理异常类的工具类
  * @author liups
  * @create 2017/12/18
  */

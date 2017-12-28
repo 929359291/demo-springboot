@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
+ * 有关系统参数的工具类
  * @author liups
  * @create 2017/12/19
  */

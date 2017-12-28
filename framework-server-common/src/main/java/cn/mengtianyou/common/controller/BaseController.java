@@ -1,6 +1,7 @@
 package cn.mengtianyou.common.controller;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,21 +12,15 @@ import javax.servlet.http.HttpServletResponse;
  * @create 2017/12/25
  */
 public class BaseController {
-    protected HttpServletRequest request;
-    protected HttpServletResponse response;
 
-    @ModelAttribute
-    public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
-        this.request = request;
-        this.response = response;
-    }
-
-    public HttpServletRequest getRequest() {
-        return this.request;
+    public static HttpServletRequest getRequest(){
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        return servletRequestAttributes.getRequest();
     }
 
     public HttpServletResponse getResponse() {
-        return this.response;
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        return servletRequestAttributes.getResponse();
     }
 
 }

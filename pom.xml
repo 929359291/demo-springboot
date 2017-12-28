@@ -21,6 +21,7 @@
         <module>rest-demo</module>
         <module>auth-server</module>
         <module>portal-demo</module>
+        <module>framework-sharding</module>
     </modules>
 
 </project>

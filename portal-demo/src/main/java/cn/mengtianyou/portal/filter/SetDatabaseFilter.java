@@ -1,7 +1,8 @@
 package cn.mengtianyou.portal.filter;
 
-import cn.mengtianyou.common.aspect.SelectedDatabase;
+import cn.mengtianyou.common.datasource.SelectedDatasource;
 import cn.mengtianyou.common.constants.HeaderDefinition;
+import cn.mengtianyou.portal.security.SessionUser;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -23,10 +24,10 @@ public class SetDatabaseFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if(session != null){
-            String dsRoute = (String) session.getAttribute(HeaderDefinition.DS_ROUTE);
-            if(!StringUtils.isEmpty(dsRoute)){
-                List<String> requestDatabases = Arrays.asList(dsRoute.split(HeaderDefinition.DS_ROUTE_SPLIT));
-                SelectedDatabase.newInstance(requestDatabases);
+            SessionUser sessionUser = (SessionUser) session.getAttribute(SessionUser.SESSION_USER);
+            if(sessionUser != null && !StringUtils.isEmpty(sessionUser.getDsRoute())){
+                List<String> requestDatabases = Arrays.asList(sessionUser.getDsRoute().split(HeaderDefinition.DS_ROUTE_SPLIT));
+                SelectedDatasource.newInstance(requestDatabases);
             }
         }
         filterChain.doFilter(request,response);

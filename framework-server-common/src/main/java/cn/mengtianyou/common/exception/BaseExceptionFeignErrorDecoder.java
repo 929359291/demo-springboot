@@ -1,4 +1,4 @@
-package cn.mengtianyou.common.handler;
+package cn.mengtianyou.common.exception;
 
 import cn.mengtianyou.common.exceptions.BaseException;
 import cn.mengtianyou.common.messages.ErrorMessage;
@@ -15,12 +15,13 @@ import java.io.IOException;
 import java.io.Reader;
 
 /**
+ * Feign客户端调用服务若htpcode不为200，则进入此方法进行处理，包装成BaseException重新抛出
  * @author liups
  * @create 2017/12/18
  */
 @Component
-public class BasExceptionFeignErrorDecoder implements ErrorDecoder {
-    Logger logger = LoggerFactory.getLogger(BasExceptionFeignErrorDecoder.class);
+public class BaseExceptionFeignErrorDecoder implements ErrorDecoder {
+    Logger logger = LoggerFactory.getLogger(BaseExceptionFeignErrorDecoder.class);
 
     @Override
     public Exception decode(String methodKey, Response response) {

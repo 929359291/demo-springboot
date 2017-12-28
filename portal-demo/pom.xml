@@ -13,9 +13,6 @@
     <artifactId>portal-demo</artifactId>
 
     <properties>
-        <service-user-api.version>${parent.version}</service-user-api.version>
-        <service-base-api.version>${parent.version}</service-base-api.version>
-        <framework-server-common.version>${parent.version}</framework-server-common.version>
         <project.mainClass>cn.mengtianyou.portal.PortalApplication</project.mainClass>
     </properties>
 

@@ -33,14 +33,15 @@ public class PortalAuthenticationSuccessHandler extends SavedRequestAwareAuthent
             logger.debug("user login success:{}",authentication.getName());
         }
         Object principal = authentication.getPrincipal();
-        if(principal instanceof PortalUser){
+        if(principal instanceof PortalUserDetails){
             HttpSession session = request.getSession(false);
             if(session != null){
-                PortalUser portalUser = (PortalUser) principal;
+                PortalUserDetails portalUser = (PortalUserDetails) principal;
                 Long id = portalUser.getId();
                 //TODO 根据用户ID来获取用户库区
                 String ds = baseFeignConsumer.getDsByUserId(id);
-                session.setAttribute(HeaderDefinition.DS_ROUTE,ds);
+                SessionUser sessionUser = new SessionUser(id,portalUser.getUsername(),ds);
+                session.setAttribute(SessionUser.SESSION_USER,sessionUser);
             }
 
         }

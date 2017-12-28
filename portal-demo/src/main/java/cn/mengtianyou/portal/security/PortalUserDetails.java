@@ -9,14 +9,14 @@ import java.util.Collection;
  * @author liups
  * @create 2017/12/27
  */
-public class PortalUser extends User {
+public class PortalUserDetails extends User {
     private Long id;
-    public PortalUser(Long id,String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public PortalUserDetails(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.id = id;
     }
 
-    public PortalUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public PortalUserDetails(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
 

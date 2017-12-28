@@ -11,16 +11,11 @@
 
     <artifactId>service-user-api</artifactId>
 
-    <properties>
-        <framework-api-common.version>${parent.version}</framework-api-common.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
             <groupId>cn.mengtianyou</groupId>
             <artifactId>framework-api-common</artifactId>
-            <version>${framework-api-common.version}</version>
         </dependency>
     </dependencies>
 

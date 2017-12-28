@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception { // @formatter:off
         http
                 .sessionManagement()
-                .sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy())
+//                .sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy()) //打开此注释表示登录鉴权成功后不会另外创建session(另外创建session会占用redis内存)
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder);

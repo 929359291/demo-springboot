@@ -1,4 +1,4 @@
-package cn.mengtianyou.common.controller;
+package cn.mengtianyou.common.exception;
 
 import cn.mengtianyou.common.messages.ErrorMessage;
 import cn.mengtianyou.common.constants.ApplicationConstant;
@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
+ * 当不进入BaseExceptionHandler处理的异常，会由此类处理
  * @author liups
  * @create 2017/12/14
  */

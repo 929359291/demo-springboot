@@ -1,6 +1,6 @@
-package cn.mengtianyou.user.aspect;
+package cn.mengtianyou.sharding.aspect;
 
-import cn.mengtianyou.user.sharding.algorithm.CustomDsHintShardingAlgorithm;
+import cn.mengtianyou.sharding.algorithm.CustomDsHintShardingAlgorithm;
 import io.shardingjdbc.core.api.HintManager;
 import io.shardingjdbc.core.hint.HintManagerHolder;
 import org.aspectj.lang.JoinPoint;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseAspect {
 
     //TODO 切面
-    @Pointcut("execution(* cn.mengtianyou.user.dao..*.*(..))")
+    @Pointcut("execution(* cn.mengtianyou..dao..*.*(..))")
     private void databasePointcut(){}//定义一个切入点
 
     /**

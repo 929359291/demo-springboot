@@ -15,7 +15,7 @@ public interface UserProvider {
     String insertUser(@RequestParam("id") Long id,@RequestParam("name") String name,@RequestParam("password") String password);
 
     @RequestMapping("/ds_route/find_user")
-    String getUserName(@RequestParam("userId") Long userId, @RequestParam(value = "ds",required = false) String ds);
+    String getUserName(@RequestParam("userId") Long userId);
 
     @RequestMapping("/login")
     User login(@RequestParam("name") String name);

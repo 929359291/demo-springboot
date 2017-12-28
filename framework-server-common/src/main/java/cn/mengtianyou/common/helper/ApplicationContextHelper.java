@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
+ * spring环境帮助类，可获取ApplicationContext
  * @author liups
  * @create 2017/12/14
  */

@@ -1,7 +1,7 @@
 package cn.mengtianyou.common;
 
-import cn.mengtianyou.common.controller.BaseExceptionController;
-import cn.mengtianyou.common.handler.BaseExceptionHandler;
+import cn.mengtianyou.common.exception.BaseExceptionController;
+import cn.mengtianyou.common.exception.BaseExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
