@@ -17,12 +17,12 @@ turbine:
 #  instanceUrlSuffix:
 #    default: /spring-manager/hystrix.stream
 
-# ²ÎÊıËµÃ÷
-# turbine.appConfig: #ÅäÖÃEurekaÖĞµÄserviceIdÁĞ±í£¬±íÃ÷¼à¿ØÄÄĞ©·şÎñ
-# turbine.aggregator.clusterConfig:  #¼à¿ØµÄ¼¯ÈºĞÅÏ¢,Ö¸¶¨¾ÛºÏÄÄĞ©¼¯Èº£¬¶à¸öÊ¹ÓÃ","·Ö¸î£¬Ä¬ÈÏÎªdefault¡£¿ÉÊ¹ÓÃhttp://.../turbine.stream?cluster={clusterConfigÖ®Ò»}·ÃÎÊ
-# turbine.clusterNameExpression: metadata['cluster']    #¼¯ÈºĞÅÏ¢µÄ»ñÈ¡·½Ê½£¨metadata['cluster']±íÊ¾Ó¦ÓÃÅäÖÃÀïÃæµÄeureka.instance.metadata-map.cluster£©
-# 1. clusterNameExpressionÖ¸¶¨¼¯ÈºÃû³Æ£¬Ä¬ÈÏ±í´ïÊ½appName£»´ËÊ±£ºturbine.aggregator.clusterConfigĞèÒªÅäÖÃÏëÒª¼à¿ØµÄÓ¦ÓÃÃû³Æ
-# 2. µ±clusterNameExpression: "'default'" Ê±£¬turbine.aggregator.clusterConfig¿ÉÒÔ²»Ğ´£¬ÒòÎªÄ¬ÈÏ¾ÍÊÇdefault
-# 3. µ±clusterNameExpression: metadata['cluster']Ê±£¬¼ÙÉèÏëÒª¼à¿ØµÄÓ¦ÓÃÅäÖÃÁËeureka.instance.metadata-map.cluster: ABC£¬ÔòĞèÒªÅäÖÃ£¬Í¬Ê±turbine.aggregator.clusterConfig: ABC
-# turbine.instanceUrlSuffix  # ¸÷ÊµÀı·ÃÎÊÇ°×ºÈç£ºservice-userÀïÃæÓĞÅäÖÃmanagement.context-path: /spring-manager£¬ÔòÅäÖÃturbine.instanceUrlSuffix.service-user: /spring-manager/hystrix.stream
+# å‚æ•°è¯´æ˜
+# turbine.appConfig: #é…ç½®Eurekaä¸­çš„serviceIdåˆ—è¡¨ï¼Œè¡¨æ˜ç›‘æ§å“ªäº›æœåŠ¡
+# turbine.aggregator.clusterConfig:  #ç›‘æ§çš„é›†ç¾¤ä¿¡æ¯,æŒ‡å®šèšåˆå“ªäº›é›†ç¾¤ï¼Œå¤šä¸ªä½¿ç”¨","åˆ†å‰²ï¼Œé»˜è®¤ä¸ºdefaultã€‚å¯ä½¿ç”¨http://.../turbine.stream?cluster={clusterConfigä¹‹ä¸€}è®¿é—®
+# turbine.clusterNameExpression: metadata['cluster']    #é›†ç¾¤ä¿¡æ¯çš„è·å–æ–¹å¼ï¼ˆmetadata['cluster']è¡¨ç¤ºåº”ç”¨é…ç½®é‡Œé¢çš„eureka.instance.metadata-map.clusterï¼‰
+# 1. clusterNameExpressionæŒ‡å®šé›†ç¾¤åç§°ï¼Œé»˜è®¤è¡¨è¾¾å¼appNameï¼›æ­¤æ—¶ï¼šturbine.aggregator.clusterConfigéœ€è¦é…ç½®æƒ³è¦ç›‘æ§çš„åº”ç”¨åç§°
+# 2. å½“clusterNameExpression: "'default'" æ—¶ï¼Œturbine.aggregator.clusterConfigå¯ä»¥ä¸å†™ï¼Œå› ä¸ºé»˜è®¤å°±æ˜¯default
+# 3. å½“clusterNameExpression: metadata['cluster']æ—¶ï¼Œå‡è®¾æƒ³è¦ç›‘æ§çš„åº”ç”¨é…ç½®äº†eureka.instance.metadata-map.cluster: ABCï¼Œåˆ™éœ€è¦é…ç½®ï¼ŒåŒæ—¶turbine.aggregator.clusterConfig: ABC
+# turbine.instanceUrlSuffix  # å„å®ä¾‹è®¿é—®å‰ç¼€å¦‚ï¼šservice-useré‡Œé¢æœ‰é…ç½®management.context-path: /spring-managerï¼Œåˆ™é…ç½®turbine.instanceUrlSuffix.service-user: /spring-manager/hystrix.stream
 

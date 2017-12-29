@@ -3,7 +3,8 @@
     <!-- 继承模板配置 -->
     <include resource="cn/mengtianyou/common/logback/base/logback-common.xml" />
     <include resource="cn/mengtianyou/common/logback/base/logback-console-appender.xml" />
-    
+
+    <logger name="cn.mengtianyou" level="DEBUG" />
     <root level="info">
         <appender-ref ref="ASYNC_STDOUT" />
     </root>

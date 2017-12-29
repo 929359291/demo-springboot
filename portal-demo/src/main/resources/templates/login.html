@@ -15,10 +15,27 @@
             <td><input type='password' name='password'/></td>
         </tr>
         <tr>
+            <td>Code:</td>
+            <td><span onclick="changeCode()"><img th:src="@{/vc/get(dt=${#dates.createNow().getTime()})}" id="imgValidateCode"/></span></td>
+        </tr>
+        <tr>
+            <td>Code:</td>
+            <td><input type="text" name="validateCode" placeholder="验证码" /></td>
+        </tr>
+        <tr>
             <td colspan='2'><input name="submit" type="submit" value="Login"/></td>
         </tr>
     </table>
+    <div>
+        <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION == null}? '' : ${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+    </div>
 </form>
 </body>
+<script>
+    function changeCode(){
+        document.getElementById("imgValidateCode").setAttribute("src","/vc/get?dt=" + (new Date().getTime()));
+    }
+
+</script>
 </html>
 

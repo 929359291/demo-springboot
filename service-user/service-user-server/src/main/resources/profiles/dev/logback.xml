@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
 
-    <logger name="com.jiguang.demo.user" level="DEBUG" />
     <include resource="cn/mengtianyou/common/logback/logback-dev.xml" />
 
 </configuration>

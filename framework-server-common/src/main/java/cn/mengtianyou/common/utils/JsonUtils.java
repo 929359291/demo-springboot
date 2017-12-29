@@ -24,7 +24,6 @@ import java.util.Map;
 public class JsonUtils {
 
 //    public static final ObjectMapper OBJECT_MAPPER = createObjectMapper();
-
 //    /**
 //     * 初始化ObjectMapper
 //     * @return

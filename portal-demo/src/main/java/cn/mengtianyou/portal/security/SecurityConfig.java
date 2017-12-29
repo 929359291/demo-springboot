@@ -12,8 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
 import org.springframework.security.web.session.SessionManagementFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -36,16 +38,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .failureUrl("/login?error=true")
                 .successHandler(portalAuthenticationSuccessHandler)
                 .permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/","/register")
+                .antMatchers("/","/register","/vc/get")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .csrf().disable()
+                //默认的登陆只支持post请求，这里改变登出的路径匹配器，使其支持get请求
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .and()
+                .addFilterBefore(new CheckCodeAuthenticationFilter("/login","/login?error=true","232#as.$3af'@"),UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(new SetDatabaseFilter(), SessionManagementFilter.class);
     }
 
