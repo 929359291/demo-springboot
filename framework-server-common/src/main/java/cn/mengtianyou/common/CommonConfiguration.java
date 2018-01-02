@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -42,17 +41,6 @@ public class CommonConfiguration {
         return new BCryptPasswordEncoder(4);
     }
 
-    /**
-     * Sha512加密器
-     * @return
-     */
-    @Bean
-    public org.springframework.security.authentication.encoding.PasswordEncoder ShaPasswordEncode() {
-        ShaPasswordEncoder encode =  new org.springframework.security.authentication.encoding.ShaPasswordEncoder(512);
-        encode.setEncodeHashAsBase64(true);
-        return encode;
-    }
-
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer initJackson() {
@@ -62,7 +50,7 @@ public class CommonConfiguration {
 //                builder.serializerByType(Long.TYPE,new CustomLongConverter());
             //不包含为空的字段
             builder.serializationInclusion(JsonInclude.Include.NON_NULL);
-            builder.indentOutput(true).dateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+            builder.dateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         };
         return c;
     }
