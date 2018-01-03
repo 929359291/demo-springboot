@@ -10,25 +10,26 @@ eureka:
 sharding:
   jdbc:
     datasource:
-      names: druid_demo_1_master,druid_demo_1_slave,druid_demo_1_slave_2,druid_demo_2
-      druid_demo_1_master:
+      names: druid_demo_1,druid_demo_2
+#      druid_demo_1_master:
+      druid_demo_1:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://192.168.52.113:3306/druid_demo_1
         username: liups
         password: 8Q2YrLAY5zPCscSj
-      druid_demo_1_slave:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.52.113:3306/druid_demo_1_slave
-        username: liups
-        password: 8Q2YrLAY5zPCscSj
-      druid_demo_1_slave_2:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.52.113:3306/druid_demo_1_slave_2
-        username: liups
-        password: 8Q2YrLAY5zPCscSj
+#      druid_demo_1_slave:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        url: jdbc:mysql://192.168.52.113:3306/druid_demo_1_slave
+#        username: liups
+#        password: 8Q2YrLAY5zPCscSj
+#      druid_demo_1_slave_2:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        url: jdbc:mysql://192.168.52.113:3306/druid_demo_1_slave_2
+#        username: liups
+#        password: 8Q2YrLAY5zPCscSj
       druid_demo_2:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
@@ -56,8 +57,8 @@ sharding:
 #            algorithmExpression: druid_demo_${USER_ID % 2 + 1}
           hint:
             algorithm-class-name: cn.mengtianyou.sharding.algorithm.CustomDsHintShardingAlgorithm
-        master-slave-rules:
-          druid_demo_1:
-            master-data-source-name: druid_demo_1_master
-            slave-data-source-names: druid_demo_1_slave,druid_demo_1_slave_2
+#        master-slave-rules:
+#          druid_demo_1:
+#            master-data-source-name: druid_demo_1_master
+#            slave-data-source-names: druid_demo_1_slave,druid_demo_1_slave_2
 

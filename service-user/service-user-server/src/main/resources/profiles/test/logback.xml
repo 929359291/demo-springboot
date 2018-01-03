@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
 
-    <include resource="cn/mengtianyou/common/logback/logback-dev.xml" />
+    <include resource="cn/mengtianyou/common/logback/logback-test.xml" />
 
 </configuration>

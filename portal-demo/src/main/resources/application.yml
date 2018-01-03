@@ -14,6 +14,7 @@ spring:
     - '@profileActive@'
 
 
+
 management:
 #  add-application-context-header: false
 #  security:

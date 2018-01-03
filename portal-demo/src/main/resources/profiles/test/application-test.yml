@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.52.124:8888/eureka
+
+spring:
+#  zipkin:
+#    base-url: http://localhost:8002
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.52.113
+
+jiguang:
+  config:
+    outputExceptionStackTrace: true
