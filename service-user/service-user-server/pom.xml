@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-user-suerver</artifactId>
+    <artifactId>service-user-server</artifactId>
 
     <packaging>jar</packaging>
 
