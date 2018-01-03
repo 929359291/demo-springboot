@@ -13,8 +13,6 @@ spring:
     active:
     - '@profileActive@'
 
-
-
 management:
 #  add-application-context-header: false
 #  security:
@@ -36,6 +34,8 @@ ribbon:
 feign:
   hystrix:
     enabled: true
+  httpclient:
+    connection-timeout: 4000
 
 hystrix:
   command:
@@ -43,3 +43,7 @@ hystrix:
       execution:
         isolation:
           strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 35000
+        timeout:
+          enabled: true
