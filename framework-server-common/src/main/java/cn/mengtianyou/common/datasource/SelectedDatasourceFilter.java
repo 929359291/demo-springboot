@@ -24,6 +24,7 @@ public class SelectedDatasourceFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //将传递过来的数据库选择存入到本地线程变量
         String dsRoute = request.getHeader(HeaderDefinition.DS_ROUTE);
+        //TODO 将session中取出分区也放到这个过滤器
         if(!StringUtils.isEmpty(dsRoute)){
             List<String> requestDatabases = Arrays.asList(dsRoute.split(HeaderDefinition.DS_ROUTE_SPLIT));
             SelectedDatasource.newInstance(requestDatabases);

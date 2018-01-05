@@ -23,6 +23,13 @@ public class SelectedDatasource {
         return selectedDatasource;
     }
 
+    public static void setInstance(SelectedDatasource selectedDatasource){
+        if(selectedDatasource == null){
+            return;
+        }
+        currentCustomDs.set(selectedDatasource);
+    }
+
     public static SelectedDatasource newInstance(List<String> requestDatabases){
         SelectedDatasource selectedDatasource = new SelectedDatasource();
         selectedDatasource.setRequestDatasource(requestDatabases);
