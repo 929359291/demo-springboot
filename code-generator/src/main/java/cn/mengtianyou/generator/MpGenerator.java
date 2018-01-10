@@ -26,7 +26,7 @@ public class MpGenerator {
     public static String DB_USER_NAME = "liups";
     public static String DB_PASSWORD = "8Q2YrLAY5zPCscSj";
     public static String DB_URL = "jdbc:mysql://192.168.52.113:3306/pub_fcs?characterEncoding=utf8";
-    public static String[] TABLES = new String[] { "fcs_menu" };
+    public static String[] TABLES = new String[] { "fcs_transaction" ,"fcs_txn_grp","fcs_txn_grp_mapping","fcs_user_grp_txn_mapping"};
     public static String PARENT_PACKAGE = "cn.mengtianyou.pcm.signon";
 
     /**
@@ -80,7 +80,7 @@ public class MpGenerator {
 //        strategy.setTablePrefix(new String[] { "tlog_", "tsys_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
          strategy.setInclude(TABLES); // 需要生成的表
-        strategy.setSuperServiceImplClass("cn.mengtianyou.pcm.base.service.BaseService");
+        strategy.setSuperServiceImplClass("cn.mengtianyou.common.service.BaseService");
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
 //         strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
