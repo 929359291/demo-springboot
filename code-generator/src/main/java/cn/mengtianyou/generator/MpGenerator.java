@@ -25,9 +25,9 @@ public class MpGenerator {
     public static String AUTHOR = "liups";
     public static String DB_USER_NAME = "liups";
     public static String DB_PASSWORD = "8Q2YrLAY5zPCscSj";
-    public static String DB_URL = "jdbc:mysql://192.168.52.113:3306/pub_fcs?characterEncoding=utf8";
-    public static String[] TABLES = new String[] { "fcs_transaction" ,"fcs_txn_grp","fcs_txn_grp_mapping","fcs_user_grp_txn_mapping"};
-    public static String PARENT_PACKAGE = "cn.mengtianyou.pcm.signon";
+    public static String DB_URL = "jdbc:mysql://192.168.52.113:3306/dis_lws?characterEncoding=utf8";
+    public static String[] TABLES = new String[] { "crm_signon" };
+    public static String PARENT_PACKAGE = "cn.mengtianyou.crm.signon";
 
     /**
      * <p>
@@ -107,6 +107,7 @@ public class MpGenerator {
         pc.setParent(PARENT_PACKAGE);
         pc.setMapper("dao");
         pc.setController("controller");
+        pc.setServiceImpl("service");
 //        pc.setModuleName("test");
         mpg.setPackageInfo(pc);
 
@@ -143,21 +144,17 @@ public class MpGenerator {
         mpg.setCfg(cfg);
 
         // 关闭默认 xml 生成，调整生成 至 根目录
-        TemplateConfig tc = new TemplateConfig();
-        tc.setXml(null);
-        mpg.setTemplate(tc);
+//        TemplateConfig tc = new TemplateConfig();
+//        tc.setXml(null);
+//        mpg.setTemplate(tc);
 
         // 自定义模板配置，可以 copy 源码 mybatis-plus/src/main/resources/templates 下面内容修改，
         // 放置自己项目的 src/main/resources/templates 目录下, 默认名称一下可以不配置，也可以自定义模板名称
-        // TemplateConfig tc = new TemplateConfig();
-        // tc.setController("...");
-        // tc.setEntity("...");
-        // tc.setMapper("...");
-        // tc.setXml("...");
-        // tc.setService("...");
-        // tc.setServiceImpl("...");
+         TemplateConfig tc = new TemplateConfig();
+         tc.setController(null);
+         tc.setService(null);
         // 如上任何一个模块如果设置 空 OR Null 将不生成该模块。
-        // mpg.setTemplate(tc);
+         mpg.setTemplate(tc);
 
         // 执行生成
         mpg.execute();
